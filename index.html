@@ -33,12 +33,18 @@
             font-weight: bold;
             font-size: 1.5rem;
             letter-spacing: 1px;
+            cursor: pointer;
         }
         .navbar .menu a {
             color: white;
             text-decoration: none;
             margin-left: 20px;
             font-size: 0.95rem;
+        }
+
+        /* 🏠 MAIN HUB PAGE (Visible by default) */
+        #hub-page {
+            display: block;
         }
 
         /* Hero Section */
@@ -229,164 +235,178 @@
             gap: 8px;
         }
         .action-btn:hover { background-color: var(--accent-teal); color: white; }
-        
-        /* Modal Popup Setup */
-        .modal {
+
+        /* 📄 FULL TEMPLATE DEDICATED PAGE LAYOUT (Hidden by default) */
+        #template-page {
             display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6);
-            align-items: center; justify-content: center;
-            z-index: 1000; padding: 20px;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
         }
-        .modal-content {
-            background: white; border-radius: 12px; max-width: 600px; width: 100%;
-            padding: 25px; box-shadow: var(--card-shadow); text-align: left;
-            position: relative; max-height: 85vh; overflow-y: auto;
+        .back-nav {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-blue);
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
         }
-        .close-modal {
-            position: absolute; top: 15px; right: 20px; font-size: 1.5rem; cursor: pointer; color: #64748b;
+        .back-nav:hover {
+            color: var(--accent-teal);
+        }
+        .workspace-layout {
+            background: white;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            padding: 35px;
+            border-top: 8px solid var(--primary-blue);
         }
         pre {
-            background: #f8fafc; border: 1px solid #e2e8f0; padding: 15px;
-            border-radius: 8px; font-family: monospace; font-size: 0.95rem;
-            white-space: pre-wrap; overflow-x: auto;
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            padding: 25px;
+            border-radius: 12px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.1rem;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            color: #1e293b;
+            line-height: 1.6;
         }
         .copy-success-msg {
-            color: #10b981; font-weight: bold; margin-top: 10px; display: none;
+            color: #10b981;
+            font-weight: bold;
+            margin-top: 15px;
+            font-size: 1.1rem;
+            display: none;
+            text-align: center;
         }
     </style>
 </head>
 <body>
 
-    <!-- Top Navbar Row -->
     <div class="navbar">
-        <div class="brand">SHAADI BIO</div>
+        <div class="brand" onclick="goBackToHub()">SHAADI BIO</div>
         <div class="menu">
-            <a href="#">Home</a>
+            <a href="#" onclick="goBackToHub()">Home</a>
             <a href="#">About</a>
             <a href="#">Contact</a>
         </div>
     </div>
 
-    <!-- Hero Interactive Segment -->
-    <div class="hero-section">
-        <div class="hero-text">
-            <h1>Create Your Marriage Biodata Online</h1>
-            <p>Create a professional marriage biodata in minutes with our easy-to-use online library templates. Choose from beautiful layouts, customize your details, and download—all for free!</p>
-            <div class="features-list">
-                <div class="feature-item">No registration required</div>
-                <div class="feature-item">5+ professional styles</div>
-                <div class="feature-item">Mobile responsive layouts</div>
-                <div class="feature-item">Instant copy & download</div>
+    <div id="hub-page">
+        <div class="hero-section">
+            <div class="hero-text">
+                <h1>Create Your Marriage Biodata Online</h1>
+                <p>Create a professional marriage biodata in minutes with our easy-to-use online library templates. Choose from beautiful layouts, customize your details, and download—all for free!</p>
+                <div class="features-list">
+                    <div class="feature-item">No registration required</div>
+                    <div class="feature-item">5+ professional styles</div>
+                    <div class="feature-item">Mobile responsive layouts</div>
+                    <div class="feature-item">Instant copy & download</div>
+                </div>
+            </div>
+            <div class="hero-video-placeholder">
+                <div class="play-btn">▶</div>
+                <p style="font-weight: 600; margin: 0; color: #334155;">Template Dashboard Preview</p>
             </div>
         </div>
-        <div class="hero-video-placeholder">
-            <div class="play-btn">▶</div>
-            <p style="font-weight: 600; margin: 0; color: #334155;">Template Dashboard Preview</p>
+
+        <div class="template-section">
+            <h2>Choose Your Template</h2>
+            <p>Select from our professionally designed marriage templates. Each layout is optimized for high readability and beautiful styling.</p>
+
+            <div class="language-filter">
+                <button class="lang-btn active" onclick="changeLanguage('en', this)">English</button>
+                <button class="lang-btn" onclick="changeLanguage('hi', this)">हिन्दी (Hindi)</button>
+                <button class="lang-btn" onclick="changeLanguage('mr', this)">मराठी (Marathi)</button>
+                <button class="lang-btn" onclick="changeLanguage('gu', this)">ગુજરાતી (Gujarati)</button>
+            </div>
+
+            <div class="grid">
+                <div class="card" id="card-green">
+                    <div class="preview-box theme-green">
+                        <div style="font-size:0.8rem; font-weight:bold; letter-spacing:1px;">PERSONAL DETAILS</div>
+                        <div>
+                            <div class="mini-line"></div><div class="mini-line short"></div>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <div>
+                            <h3>Classic Green</h3>
+                            <p>Elegant dark forest green styling built elegantly for high-tier professional biodatas.</p>
+                        </div>
+                        <button class="action-btn" onclick="openTemplatePage('green')">👁 Use This Template</button>
+                    </div>
+                </div>
+
+                <div class="card" id="card-red">
+                    <div class="preview-box theme-red">
+                        <div style="font-size:0.8rem; font-weight:bold; letter-spacing:1px;">VIBRANT DETAILS</div>
+                        <div>
+                            <div class="mini-line"></div><div class="mini-line"></div>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <div>
+                            <h3>Modern Red</h3>
+                            <p>Bold crimson header design structure engineered specifically for modern corporate professionals.</p>
+                        </div>
+                        <button class="action-btn" onclick="openTemplatePage('red')">👁 Use This Template</button>
+                    </div>
+                </div>
+
+                <div class="card" id="card-maroon">
+                    <div class="preview-box theme-maroon">
+                        <div style="font-size:0.75rem; font-weight:bold; letter-spacing:1px;">|| SHRI GANESH ||</div>
+                        <div>
+                            <div class="mini-line"></div><div class="mini-line short"></div>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <div>
+                            <h3>Traditional Maroon</h3>
+                            <p>Cultural auspicious maroon template layout prioritizing detailed astrological lineages.</p>
+                        </div>
+                        <button class="action-btn" onclick="openTemplatePage('maroon')">👁 Use This Template</button>
+                    </div>
+                </div>
+
+                <div class="card" id="card-blue">
+                    <div class="preview-box theme-blue">
+                        <div style="font-size:0.8rem; font-weight:bold; letter-spacing:1px;">BIO DATA PROFILE</div>
+                        <div>
+                            <div class="mini-line"></div><div class="mini-line short"></div>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <div>
+                            <h3>Ocean Blue</h3>
+                            <p>Calming royal deep-sea theme built for slick, clean layouts and optimal clarity.</p>
+                        </div>
+                        <button class="action-btn" onclick="openTemplatePage('blue')">👁 Use This Template</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Selection Showcase Segment -->
-    <div class="template-section">
-        <h2>Choose Your Template</h2>
-        <p>Select from our professionally designed marriage templates. Each layout is optimized for high readability and beautiful styling.</p>
-
-        <!-- 🌐 Language Selection Filter Buttons -->
-        <div class="language-filter">
-            <button class="lang-btn active" onclick="changeLanguage('en', this)">English</button>
-            <button class="lang-btn" onclick="changeLanguage('hi', this)">हिन्दी (Hindi)</button>
-            <button class="lang-btn" onclick="changeLanguage('mr', this)">मराठी (Marathi)</button>
-            <button class="lang-btn" onclick="changeLanguage('gu', this)">ગુજરાતી (Gujarati)</button>
-        </div>
-
-        <!-- Dynamic Grid Workspace -->
-        <div class="grid">
+    <div id="template-page">
+        <div class="back-nav" onclick="goBackToHub()">← Back to Design Dashboard</div>
+        
+        <div class="workspace-layout">
+            <h2 id="pageTitle" style="color: var(--primary-blue); margin-top:0; font-size: 1.8rem;">Template Workspace</h2>
+            <p style="color: #64748b; margin-bottom: 25px;">Your selected template copy layout. You can highlight, copy, or edit directly in the text window below.</p>
             
-            <!-- Green Card -->
-            <div class="card" id="card-green">
-                <div class="preview-box theme-green">
-                    <div style="font-size:0.8rem; font-weight:bold; letter-spacing:1px;">PERSONAL DETAILS</div>
-                    <div>
-                        <div class="mini-line"></div><div class="mini-line short"></div>
-                    </div>
-                </div>
-                <div class="card-info">
-                    <div>
-                        <h3>Classic Green</h3>
-                        <p>Elegant dark forest green styling built elegantly for high-tier professional biodatas.</p>
-                    </div>
-                    <button class="action-btn" onclick="openTemplate('green')">👁 Use This Template</button>
-                </div>
-            </div>
-
-            <!-- Red Card -->
-            <div class="card" id="card-red">
-                <div class="preview-box theme-red">
-                    <div style="font-size:0.8rem; font-weight:bold; letter-spacing:1px;">VIBRANT DETAILS</div>
-                    <div>
-                        <div class="mini-line"></div><div class="mini-line"></div>
-                    </div>
-                </div>
-                <div class="card-info">
-                    <div>
-                        <h3>Modern Red</h3>
-                        <p>Bold crimson header design structure engineered specifically for modern corporate professionals.</p>
-                    </div>
-                    <button class="action-btn" onclick="openTemplate('red')">👁 Use This Template</button>
-                </div>
-            </div>
-
-            <!-- Maroon Card -->
-            <div class="card" id="card-maroon">
-                <div class="preview-box theme-maroon">
-                    <div style="font-size:0.75rem; font-weight:bold; letter-spacing:1px;">|| SHRI GANESH ||</div>
-                    <div>
-                        <div class="mini-line"></div><div class="mini-line short"></div>
-                    </div>
-                </div>
-                <div class="card-info">
-                    <div>
-                        <h3>Traditional Maroon</h3>
-                        <p>Cultural auspicious maroon template layout prioritizing detailed astrological lineages.</p>
-                    </div>
-                    <button class="action-btn" onclick="openTemplate('maroon')">👁 Use This Template</button>
-                </div>
-            </div>
-
-            <!-- Blue Card -->
-            <div class="card" id="card-blue">
-                <div class="preview-box theme-blue">
-                    <div style="font-size:0.8rem; font-weight:bold; letter-spacing:1px;">BIO DATA PROFILE</div>
-                    <div>
-                        <div class="mini-line"></div><div class="mini-line short"></div>
-                    </div>
-                </div>
-                <div class="card-info">
-                    <div>
-                        <h3>Ocean Blue</h3>
-                        <p>Calming royal deep-sea theme built for slick, clean layouts and optimal clarity.</p>
-                    </div>
-                    <button class="action-btn" onclick="openTemplate('blue')">👁 Use This Template</button>
-                </div>
-            </div>
-
+            <pre id="pageTemplateBody" contenteditable="true"></pre>
+            
+            <button class="action-btn" style="background: var(--primary-blue); color: white; padding: 16px; font-size: 1.1rem; margin-top: 20px;" onclick="copyPageText()">📋 Copy Template to Clipboard</button>
+            <div class="copy-success-msg" id="pageCopySuccess">&nbsp;</div>
         </div>
     </div>
 
-    <!-- Popup Window Modal Area -->
-    <div class="modal" id="templateModal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal()">&times;</span>
-            <h3 id="modalTitle" style="color: var(--primary-blue); margin-top:0;">Your Template</h3>
-            <p style="color: #64748b; font-size:0.9rem;">Copy the text below and customize it easily with your details.</p>
-            <pre id="templateBody"></pre>
-            <button class="action-btn" style="background:var(--primary-blue); color:white;" onclick="copyModalText()">📋 Copy to Clipboard</button>
-            <div class="copy-success-msg" id="copySuccess">✅ Copied text formatting successfully!</div>
-        </div>
-    </div>
-
-    <!-- Corrected Full Language Dataset Matrix -->
     <script>
         let currentLang = 'en';
 
@@ -404,14 +424,14 @@
                 blue: "📱 ओशन ब्लू मोबाइल प्रारूप (हिंदी) 📱\n• नाम: \n• आयु/ऊंचाई: \n• व्यवसाय/कार्य: \n• वर्तमान स्थान: \n• व्हाट्सएप नंबर: "
             },
             mr: {
-                green: "=== क्लासिक ग्रीन फॉरमॅट (मराठी) ===\nपूर्ण नाव: \nजन्म तारीख: \nउंची: \nशिक्षण: \nनोकरी/व्यवसाय: \nवडिलांचे नाव: \nसंपर्क क्रमांक: ",
+                green: "=== क्लासिक ग्रीन फॉरमॅट (मराठी) ===\nपूर्ण नाव: \nजन्म तारीख: \nउंची: \nशिक्षण: \nनोकरी/व्यवसाय: \nकंपनीचे नाव: \nवडिलांचे नाव: \nसंपर्क क्रमांक: ",
                 red: "=== मॉडर्न रेड फॉरमॅट (मराठी) ===\nनाव: \nहुद्दा/पद: \nकंपनीचे नाव: \nवार्षिक उत्पन्न: \nकामाचे ठिकाण: \nसध्याचे राहण्याचे ठिकाण: ",
                 maroon: "=== पारंपारिक मारून फॉरमॅट (मराठी) ===\n|| श्री गणेशाय नमः ||\nपूर्ण नाव: \nगोत्र: \nनक्षत्र: \nराशी: \nमंगळ (आहे/नाही): \nमूळ गाव: ",
-                blue: "📱 ओशन ब्लू मोबाईल लेआउट (मराठी) 📱\n• नाव: \n• वय/उंची: \n• नोकरी व शिक्षण: \n• राहण्याचे ठिकाण: \n• संपर्क क्रमांक: "
+                blue: "📱 ओशनू ब्लू मोबाईल लेआउट (मराठी) 📱\n• नाव: \n• वय/उंची: \n• नोकरी व शिक्षण: \n• राहण्याचे ठिकाण: \n• संपर्क क्रमांक: "
             },
             gu: {
                 green: "=== ક્લાસિક ગ્રીન ફોર્મેટ (ગુજરાતી) ===\nપૂરું નામ: \nજન્મ તારીખ: \nઊંચાઈ: \nશિક્ષણ: \nવ્યવસાય/નોકરી: \nપિતાનું નામ: \nસંપર્ક નંબર: ",
-                red: "=== મોડર્ન રેડ ફોર્મેટ (ગુજરાતી) ===\nનામ: \nહોદ્દો: \nકંપનીનું નામ: \nવાર્ષિક આવક: \nનોકરીનું સ્થળ: \nપરિવારનું સરનામું: ",
+                red: "=== મોડર્ન રેડ ફોર્મેટ (ગુજરાતી) ===\nનામ: \nોદ્દો: \nકંપનીનું નામ: \nવાર્ષિક આવક: \nનોકરીનું સ્થળ: \nપરિવારનું સરનામું: ",
                 maroon: "=== પારંપરિક મારૂન ફોર્મેટ (ગુજરાતી) ===\n|| શ્રી ગણેશાય નમઃ ||\nપૂરું નામ: \nગોત્ર: \nનક્ષત્ર: \nરાષિ: \nમાંગલિક (હા/ના): \nવતન/મૂળ ગામ: ",
                 blue: "📱 ઓશન બ્લુ મોબાઇલ લેઆઉટ (ગુજરાતી) 📱\n• નામ: \n• ઉંમર/ઊંચાઈ: \n• નોકરી-ધંધો: \n• હાલનું સરનામું: \n• ફોન નંબર: "
             }
@@ -423,35 +443,37 @@
             element.classList.add('active');
         }
 
-        function openTemplate(type) {
-            const modal = document.getElementById('templateModal');
-            const title = document.getElementById('modalTitle');
-            const body = document.getElementById('templateBody');
+        // Navigation Engine to open template like a separate page view
+        function openTemplatePage(type) {
+            document.getElementById('hub-page').style.display = 'none';
             
-            // Fixed connection mapping types directly to keys now!
-            title.innerText = type.toUpperCase() + " DESIGN TEMPLATE (" + currentLang.toUpperCase() + ")";
+            const templatePage = document.getElementById('template-page');
+            const title = document.getElementById('pageTitle');
+            const body = document.getElementById('pageTemplateBody');
+            
+            // Setup details onto full-screen template container
+            title.innerText = type.toUpperCase() + " SELECTION WORKSPACE (" + currentLang.toUpperCase() + ")";
             body.innerText = templatesData[currentLang][type];
             
-            modal.style.display = 'flex';
+            templatePage.style.display = 'block';
+            window.scrollTo(0, 0);
         }
 
-        function closeModal() {
-            document.getElementById('templateModal').style.display = 'none';
-            document.getElementById('copySuccess').style.display = 'none';
+        function goBackToHub() {
+            document.getElementById('template-page').style.display = 'none';
+            document.getElementById('hub-page').style.display = 'block';
+            document.getElementById('pageCopySuccess').style.display = 'none';
+            window.scrollTo(0, 0);
         }
 
-        function copyModalText() {
-            const text = document.getElementById('templateBody').innerText;
+        function copyPageText() {
+            const text = document.getElementById('pageTemplateBody').innerText;
             navigator.clipboard.writeText(text).then(() => {
-                const successMsg = document.getElementById('copySuccess');
+                const successMsg = document.getElementById('pageCopySuccess');
+                successMsg.innerText = "✅ Template Copied Successfully!";
                 successMsg.style.display = 'block';
-                setTimeout(() => { successMsg.style.display = 'none'; }, 2500);
+                setTimeout(() => { successMsg.style.display = 'none'; }, 3000);
             });
-        }
-
-        window.onclick = function(event) {
-            const modal = document.getElementById('templateModal');
-            if (event.target == modal) { closeModal(); }
         }
     </script>
 </body>
