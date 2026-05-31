@@ -172,13 +172,10 @@
         .card:hover {
             transform: translateY(-5px);
         }
-        .card.selected {
-            border-color: var(--primary-blue);
-        }
         
         /* Mini Visual Preview Windows */
         .preview-box {
-            height: 220px;
+            height: 150px;
             padding: 20px;
             color: white;
             display: flex;
@@ -191,7 +188,7 @@
             content: "BIO DATA";
             position: absolute;
             bottom: 10px; right: 15px;
-            opacity: 0.15; font-size: 2.5rem; font-weight: bold;
+            opacity: 0.15; font-size: 2.2rem; font-weight: bold;
         }
         .mini-line {
             height: 6px; background: rgba(255,255,255,0.3); border-radius: 3px; margin-bottom: 8px; width: 80%;
@@ -286,7 +283,7 @@
         </div>
         <div class="hero-video-placeholder">
             <div class="play-btn">▶</div>
-            <p style="font-weight: 600; margin: 0; color: #334155;">Click to view template preview generator layout</p>
+            <p style="font-weight: 600; margin: 0; color: #334155;">Template Dashboard Preview</p>
         </div>
     </div>
 
@@ -295,7 +292,7 @@
         <h2>Choose Your Template</h2>
         <p>Select from our professionally designed marriage templates. Each layout is optimized for high readability and beautiful styling.</p>
 
-        <!-- 🌐 Dynamic Multi-Language Selection Filter Buttons -->
+        <!-- 🌐 Language Selection Filter Buttons -->
         <div class="language-filter">
             <button class="lang-btn active" onclick="changeLanguage('en', this)">English</button>
             <button class="lang-btn" onclick="changeLanguage('hi', this)">हिन्दी (Hindi)</button>
@@ -312,7 +309,6 @@
                     <div style="font-size:0.8rem; font-weight:bold; letter-spacing:1px;">PERSONAL DETAILS</div>
                     <div>
                         <div class="mini-line"></div><div class="mini-line short"></div>
-                        <div class="mini-line"></div>
                     </div>
                 </div>
                 <div class="card-info">
@@ -320,7 +316,7 @@
                         <h3>Classic Green</h3>
                         <p>Elegant dark forest green styling built elegantly for high-tier professional biodatas.</p>
                     </div>
-                    <button class="action-btn" onclick="openTemplate('professional')">👁 Use This Template</button>
+                    <button class="action-btn" onclick="openTemplate('green')">👁 Use This Template</button>
                 </div>
             </div>
 
@@ -330,7 +326,6 @@
                     <div style="font-size:0.8rem; font-weight:bold; letter-spacing:1px;">VIBRANT DETAILS</div>
                     <div>
                         <div class="mini-line"></div><div class="mini-line"></div>
-                        <div class="mini-line short"></div>
                     </div>
                 </div>
                 <div class="card-info">
@@ -338,7 +333,7 @@
                         <h3>Modern Red</h3>
                         <p>Bold crimson header design structure engineered specifically for modern corporate professionals.</p>
                     </div>
-                    <button class="action-btn" onclick="openTemplate('corporate')">👁 Use This Template</button>
+                    <button class="action-btn" onclick="openTemplate('red')">👁 Use This Template</button>
                 </div>
             </div>
 
@@ -348,7 +343,6 @@
                     <div style="font-size:0.75rem; font-weight:bold; letter-spacing:1px;">|| SHRI GANESH ||</div>
                     <div>
                         <div class="mini-line"></div><div class="mini-line short"></div>
-                        <div class="mini-line"></div>
                     </div>
                 </div>
                 <div class="card-info">
@@ -356,7 +350,7 @@
                         <h3>Traditional Maroon</h3>
                         <p>Cultural auspicious maroon template layout prioritizing detailed astrological lineages.</p>
                     </div>
-                    <button class="action-btn" onclick="openTemplate('traditional')">👁 Use This Template</button>
+                    <button class="action-btn" onclick="openTemplate('maroon')">👁 Use This Template</button>
                 </div>
             </div>
 
@@ -365,8 +359,7 @@
                 <div class="preview-box theme-blue">
                     <div style="font-size:0.8rem; font-weight:bold; letter-spacing:1px;">BIO DATA PROFILE</div>
                     <div>
-                        <div class="mini-line"></div><div class="mini-line"></div>
-                        <div class="mini-line short"></div>
+                        <div class="mini-line"></div><div class="mini-line short"></div>
                     </div>
                 </div>
                 <div class="card-info">
@@ -374,7 +367,7 @@
                         <h3>Ocean Blue</h3>
                         <p>Calming royal deep-sea theme built for slick, clean layouts and optimal clarity.</p>
                     </div>
-                    <button class="action-btn" onclick="openTemplate('whatsapp')">👁 Use This Template</button>
+                    <button class="action-btn" onclick="openTemplate('blue')">👁 Use This Template</button>
                 </div>
             </div>
 
@@ -393,35 +386,34 @@
         </div>
     </div>
 
-    <!-- Language Dataset & Navigation Controller Script -->
+    <!-- Corrected Full Language Dataset Matrix -->
     <script>
         let currentLang = 'en';
 
-        // Deep text dataset mapping regional language matrix configurations
         const templatesData = {
             en: {
-                professional: "=== MATRIMONIAL BIODATA ===\nName: \nDOB: \nHeight: \nEducation: \nProfession: \nCompany: \nFather's Name: \nContact Number: ",
-                corporate: "=== CORPORATE BIODATA LAYOUT ===\nFull Name: \nDesignation: \nCTC/Income: \nWork Location: \nQualifications: \nFamily Background: ",
-                traditional: "=== || Shri Ganeshaya Namah || ===\nFull Name: \nGotra: \nNakshatra: \nRashi: \nManglik (Yes/No): \nFather's Profession: \nNative Village: ",
-                whatsapp: "📱 *MATRIMONIAL PROFILE* 📱\n• Name: \n• Age/Height: \n• Sector: \n• Location: \n• Contact Details: "
+                green: "=== CLASSIC GREEN TEMPLATE (ENGLISH) ===\nFull Name: \nDate of Birth: \nHeight: \nEducation: \nProfession: \nFather's Name: \nContact Number: ",
+                red: "=== MODERN RED TEMPLATE (ENGLISH) ===\nName: \nDesignation: \nCompany Name: \nAnnual Salary: \nWork Location: \nFamily Location: ",
+                maroon: "=== TRADITIONAL MAROON TEMPLATE (ENGLISH) ===\n|| Shri Ganeshaya Namah ||\nFull Name: \nGotra: \nNakshatra: \nRashi: \nManglik (Yes/No): \nNative Place: ",
+                blue: "📱 OCEAN BLUE MOBILE LAYOUT (ENGLISH) 📱\n• Name: \n• Age/Height: \n• Occupation: \n• Location: \n• WhatsApp: "
             },
             hi: {
-                professional: "=== विवाह हेतु बायोडाटा ===\nनाम: \nजन्म तिथि: \nऊंचाई: \nशिक्षा: \nव्यवसाय: \nकंपनी: \nपिता का नाम: \nसंपर्क सूत्र: ",
-                corporate: "=== कॉर्पोरेट प्रोफाइल प्रारूप ===\nपूरा नाम: \nपदनाम: \nआय/वेतन: \nकार्यस्थल: \nशैक्षणिक योग्यता: \nपारिवारिक विवरण: ",
-                traditional: "=== || श्री गणेशाय नमः || ===\nपूरा नाम: \nगोत्र: \nनक्षत्र: \nराशि: \nमांगलिक (हाँ/नहीं): \nपिता का व्यवसाय: \nमूल निवास स्थान: ",
-                whatsapp: "📱 *विवाह हेतु संक्षिप्त विवरण* 📱\n• नाम: \n• आयु/ऊंचाई: \n• शिक्षा/कार्य: \n• वर्तमान स्थान: \n• मोबाइल नंबर: "
+                green: "=== क्लासिक ग्रीन टेम्पलेट (हिंदी) ===\nपूरा नाम: \nजन्म तिथि: \nऊंचाई: \nशैक्षणिक योग्यता: \nव्यवसाय/नोकरी: \nपिता का नाम: \nसंपर्क सूत्र: ",
+                red: "=== मॉडर्न रेड टेम्पलेट (हिंदी) ===\nनाम: \nपदनाम (Designation): \nकंपनी का नाम: \nवार्षिक आय: \nकार्यस्थल: \nपरिवार का निवास स्थान: ",
+                maroon: "=== पारंपरिक मकरून टेम्पलेट (हिंदी) ===\n|| श्री गणेशाय नमः ||\nपूरा नाम: \nगोत्र: \nनक्षत्र: \nराशि: \nमांगलिक (हाँ/नहीं): \nमूल निवास स्थान: ",
+                blue: "📱 ओशन ब्लू मोबाइल प्रारूप (हिंदी) 📱\n• नाम: \n• आयु/ऊंचाई: \n• व्यवसाय/कार्य: \n• वर्तमान स्थान: \n• व्हाट्सएप नंबर: "
             },
             mr: {
-                professional: "=== लग्नाचा बायोडाटा ===\nनाव: \nजन्म तारीख: \nउंची: \nशिक्षण: \nनोकरी/व्यवसाय: \nकंपनीचे नाव: \nवडिलांचे नाव: \nसंपर्क क्रमांक: ",
-                corporate: "=== कॉर्पोरेट बायोडाटा फॉरमॅट ===\nपूर्ण नाव: \nहुद्दा/पद: \nउत्पन्न: \nकामाचे ठिकाण: \nशिक्षण: \nकुटुंबाची माहिती: ",
-                traditional: "=== || श्री गणेशाय नमः || ===\nपूर्ण नाव: \nगोत्र: \nनक्षत्र: \nराशी: \nमंगळ (आहे/नाही): \nवडिलांचा व्यवसाय: \nमूळ गाव: ",
-                whatsapp: "📱 *लग्नासाठी बायोडाटा* 📱\n• नाव: \n• वय/उंची: \n• शिक्षण व नोकरी: \n• राहण्याचे ठिकाण: \n• संपर्क: "
+                green: "=== क्लासिक ग्रीन फॉरमॅट (मराठी) ===\nपूर्ण नाव: \nजन्म तारीख: \nउंची: \nशिक्षण: \nनोकरी/व्यवसाय: \nवडिलांचे नाव: \nसंपर्क क्रमांक: ",
+                red: "=== मॉडर्न रेड फॉरमॅट (मराठी) ===\nनाव: \nहुद्दा/पद: \nकंपनीचे नाव: \nवार्षिक उत्पन्न: \nकामाचे ठिकाण: \nसध्याचे राहण्याचे ठिकाण: ",
+                maroon: "=== पारंपारिक मारून फॉरमॅट (मराठी) ===\n|| श्री गणेशाय नमः ||\nपूर्ण नाव: \nगोत्र: \nनक्षत्र: \nराशी: \nमंगळ (आहे/नाही): \nमूळ गाव: ",
+                blue: "📱 ओशन ब्लू मोबाईल लेआउट (मराठी) 📱\n• नाव: \n• वय/उंची: \n• नोकरी व शिक्षण: \n• राहण्याचे ठिकाण: \n• संपर्क क्रमांक: "
             },
             gu: {
-                professional: "=== લગ્ન માટે બાયોડેટા ===\nનામ: \nજન્મ તારીખ: \nઊંચાઈ: \nશિક્ષણ: \nવ્યવસાય/નોકરી: \nકંપની: \nપિતાનું નામ: \nસંપર્ક નંબર: ",
-                corporate: "=== કોર્પોરેટ બાયોડેટા ફોર્મેટ ===\nપૂરું નામ: \nહોદ્દો: \nવાર્ષિક આવક: \nનોકરીનું સ્થળ: \nલાયકાત: \nપરિવારની વિગત: ",
-                traditional: "=== || શ્રી ગણેશાય નમઃ || ===\nપૂરું નામ: \nગોત્ર: \nનક્ષત્ર: \nરાશિ: \nમાંગલિક (હા/ના): \nપિતાનો વ્યવસાય: \nવતન: ",
-                whatsapp: "📱 *લગ્ન પ્રોફાઇલ* 📱\n• નામ: \n• ઉંમર/ઊંચાઈ: \n• અભ્યાસ અને નોકરી: \n• હાલનું સરનામું: \n• ફોન નંબર: "
+                green: "=== ક્લાસિક ગ્રીન ફોર્મેટ (ગુજરાતી) ===\nપૂરું નામ: \nજન્મ તારીખ: \nઊંચાઈ: \nશિક્ષણ: \nવ્યવસાય/નોકરી: \nપિતાનું નામ: \nસંપર્ક નંબર: ",
+                red: "=== મોડર્ન રેડ ફોર્મેટ (ગુજરાતી) ===\nનામ: \nહોદ્દો: \nકંપનીનું નામ: \nવાર્ષિક આવક: \nનોકરીનું સ્થળ: \nપરિવારનું સરનામું: ",
+                maroon: "=== પારંપરિક મારૂન ફોર્મેટ (ગુજરાતી) ===\n|| શ્રી ગણેશાય નમઃ ||\nપૂરું નામ: \nગોત્ર: \nનક્ષત્ર: \nરાષિ: \nમાંગલિક (હા/ના): \nવતન/મૂળ ગામ: ",
+                blue: "📱 ઓશન બ્લુ મોબાઇલ લેઆઉટ (ગુજરાતી) 📱\n• નામ: \n• ઉંમર/ઊંચાઈ: \n• નોકરી-ધંધો: \n• હાલનું સરનામું: \n• ફોન નંબર: "
             }
         };
 
@@ -436,8 +428,8 @@
             const title = document.getElementById('modalTitle');
             const body = document.getElementById('templateBody');
             
-            // Format Display Title dynamically
-            title.innerText = type.toUpperCase() + " LAYOUT (" + currentLang.toUpperCase() + ")";
+            // Fixed connection mapping types directly to keys now!
+            title.innerText = type.toUpperCase() + " DESIGN TEMPLATE (" + currentLang.toUpperCase() + ")";
             body.innerText = templatesData[currentLang][type];
             
             modal.style.display = 'flex';
@@ -457,7 +449,6 @@
             });
         }
 
-        // Close modal if outer background window clicked
         window.onclick = function(event) {
             const modal = document.getElementById('templateModal');
             if (event.target == modal) { closeModal(); }
