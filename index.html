@@ -3,333 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShaadiGuide.in - Create Marriage Biodata Online</title>
+    <title>ShaadiGuide.in - Matrimony Bios, Kundli & Shubh Muhurat</title>
     <style>
         :root {
             --primary-blue: #0f7694;
             --accent-teal: #14b8a6;
             --bg-light: #f0fdfa;
             --card-shadow: 0 10px 25px rgba(0,0,0,0.08);
-            --template-color: #2e7d32; /* Default theme color */
+            --template-color: #2e7d32;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             background-color: var(--bg-light);
             color: #333;
         }
 
-        /* Top Navigation Bar */
+        /* Top Bar */
         .navbar {
             background-color: var(--primary-blue);
-            color: white;
-            padding: 15px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            color: white; padding: 15px 40px;
+            display: flex; justify-content: space-between; align-items: center;
         }
-        .navbar .brand {
-            font-weight: bold;
-            font-size: 1.5rem;
-            letter-spacing: 1px;
-            cursor: pointer;
-        }
-        .navbar .menu a {
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
-            font-size: 0.95rem;
-        }
+        .navbar .brand { font-weight: bold; font-size: 1.5rem; cursor: pointer; }
 
-        /* HUB PAGE LAYOUT */
-        #hub-page {
-            display: block;
+        /* Dynamic Tool Menu Navigation Bar */
+        .keyword-nav {
+            background: #ffffff;
+            border-bottom: 2px solid #e2e8f0;
+            display: flex; justify-content: center;
+            gap: 15px; padding: 12px 20px; flex-wrap: wrap;
         }
-        .hero-section {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 20px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
+        .nav-tool-btn {
+            background: none; border: none; padding: 10px 20px;
+            font-size: 1rem; font-weight: 600; color: #64748b;
+            cursor: pointer; border-radius: 8px; transition: all 0.2s;
         }
-        @media (max-width: 768px) {
-            .hero-section { grid-template-columns: 1fr; text-align: center; }
-        }
-        .hero-text h1 {
-            color: var(--primary-blue);
-            font-size: 2.8rem;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-        .hero-text p {
-            font-size: 1.1rem;
-            color: #555;
-            line-height: 1.6;
-        }
-        .features-list {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin: 25px 0;
-        }
-        .feature-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.95rem;
-        }
-        .feature-item::before {
-            content: "✓";
-            color: #10b981;
-            font-weight: bold;
-            background: #d1fae5;
-            border-radius: 50%;
-            padding: 2px 6px;
-        }
-        .hero-video-placeholder {
-            background: white;
-            border-radius: 15px;
-            padding: 40px 20px;
-            box-shadow: var(--card-shadow);
-            text-align: center;
-            border: 2px dashed #cbd5e1;
-        }
-        .play-btn {
-            width: 60px;
-            height: 60px;
-            background: var(--primary-blue);
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
+        .nav-tool-btn:hover { color: var(--primary-blue); background: #f1f5f9; }
+        .nav-tool-btn.active { color: white; background: var(--primary-blue); }
 
-        .template-section {
-            max-width: 1200px;
-            margin: 60px auto;
-            padding: 0 20px;
-            text-align: center;
-        }
-        .template-section h2 { font-size: 2.2rem; color: #1e293b; }
-        
-        .language-filter {
-            margin-bottom: 40px;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        .lang-btn {
-            background: white;
-            border: 2px solid #cbd5e1;
-            padding: 8px 20px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: 600;
-            color: #475569;
-        }
-        .lang-btn.active {
-            background: var(--primary-blue);
-            color: white;
-            border-color: var(--primary-blue);
-        }
+        /* Structural Core Layout Switchers */
+        .tool-section { display: none; }
+        .tool-section.active-view { display: block; }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 30px;
-        }
-        .card {
-            background: white;
-            border-radius: 12px;
-            box-shadow: var(--card-shadow);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s;
-        }
-        .card:hover { transform: translateY(-5px); }
-        
-        .preview-box {
-            height: 150px;
-            padding: 20px;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            text-align: left;
-        }
-        .mini-line { height: 6px; background: rgba(255,255,255,0.3); border-radius: 3px; margin-bottom: 8px; width: 80%; }
-        .mini-line.short { width: 40%; }
+        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+        .panel { background: white; padding: 35px; border-radius: 16px; box-shadow: var(--card-shadow); }
+        h2 { color: var(--primary-blue); margin-top: 0; }
 
+        /* 📋 BIODATA DESIGN LAYOUT */
+        .template-section { text-align: center; }
+        .language-filter { margin-bottom: 30px; display: flex; justify-content: center; gap: 10px; }
+        .lang-btn { background: white; border: 2px solid #cbd5e1; padding: 8px 20px; border-radius: 20px; cursor: pointer; font-weight: 600; }
+        .lang-btn.active { background: var(--primary-blue); color: white; border-color: var(--primary-blue); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; }
+        .card { background: white; border-radius: 12px; box-shadow: var(--card-shadow); overflow: hidden; display: flex; flex-direction: column; }
+        .preview-box { height: 120px; padding: 20px; color: white; text-align: left; }
         .theme-green { background: linear-gradient(135deg, #1e3a1e, #2e7d32); }
         .theme-red { background: linear-gradient(135deg, #4a0e0e, #c62828); }
         .theme-maroon { background: linear-gradient(135deg, #3a0007, #7a0016); }
         .theme-blue { background: linear-gradient(135deg, #0f2027, #203a43); }
-
-        .card-info { padding: 20px; text-align: left; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;}
-        .card-info h3 { margin: 0 0 10px 0; color: #1e293b; }
-        .card-info p { font-size: 0.9rem; color: #64748b; margin-bottom: 15px; }
-        
+        .card-info { padding: 15px; }
         .action-btn {
-            background-color: #22d3ee;
-            color: #083344;
-            border: none;
-            width: 100%;
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 0.95rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
+            background-color: #22d3ee; color: #083344; border: none; width: 100%; padding: 12px;
+            border-radius: 8px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
         }
         .action-btn:hover { background-color: var(--accent-teal); color: white; }
 
-        /* 📄 VISUAL DOCUMENT PAGE LAYOUT */
-        #template-page {
-            display: none;
-            max-width: 1100px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-        .back-nav {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--primary-blue);
-            font-weight: bold;
-            cursor: pointer;
-            margin-bottom: 25px;
-        }
-        
-        /* Two Column Editor System Layout */
-        .editor-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: start;
-        }
-        @media (max-width: 900px) {
-            .editor-container { grid-template-columns: 1fr; }
-        }
-
-        /* Left Column Input Panel */
-        .form-panel {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: var(--card-shadow);
-        }
-        .form-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-        .form-group label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 5px;
-            color: #475569;
-            font-size: 0.9rem;
-        }
-        .form-group input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #cbd5e1;
-            border-radius: 6px;
-            font-size: 1rem;
-            box-sizing: border-box;
-        }
-
-        /* Right Column Live Printable Document Preview Sheet */
-        .document-preview-sheet {
-            background: white;
-            border: 12px double var(--template-color);
-            padding: 40px;
-            box-shadow: var(--card-shadow);
-            min-height: 600px;
-            text-align: left;
-            position: relative;
-        }
-        .doc-header {
-            text-align: center;
-            color: var(--template-color);
-            border-bottom: 2px dashed var(--template-color);
-            padding-bottom: 15px;
-            margin-bottom: 30px;
-        }
-        .doc-header h2 { margin: 0; font-size: 2rem; letter-spacing: 1px; }
-        .doc-header p { margin: 5px 0 0 0; font-size: 0.9rem; font-weight: bold; opacity: 0.8; }
-        
-        .doc-section-title {
-            background: var(--template-color);
-            color: white;
-            padding: 6px 12px;
-            font-weight: bold;
-            font-size: 1rem;
-            margin-top: 25px;
-            margin-bottom: 15px;
-            letter-spacing: 0.5px;
-        }
-        
-        .doc-grid {
-            display: grid;
-            grid-template-columns: 130px 1fr;
-            row-gap: 12px;
-            column-gap: 10px;
-            font-size: 1.05rem;
-            align-items: center;
-        }
+        /* BIODATA LIVE PREVIEW BUILDER CANVAS */
+        #template-page { display: none; max-width: 1100px; margin: 40px auto; padding: 0 20px; }
+        .editor-container { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        @media (max-width: 900px) { .editor-container { grid-template-columns: 1fr; } }
+        .form-panel { background: white; padding: 30px; border-radius: 12px; box-shadow: var(--card-shadow); }
+        .form-group { margin-bottom: 15px; text-align: left; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 5px; color: #475569; }
+        .form-group input, .form-group select { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 1rem; box-sizing: border-box; }
+        .document-preview-sheet { background: white; border: 12px double var(--template-color); padding: 40px; box-shadow: var(--card-shadow); }
+        .doc-header { text-align: center; color: var(--template-color); border-bottom: 2px dashed var(--template-color); padding-bottom: 15px; margin-bottom: 25px; }
+        .doc-section-title { background: var(--template-color); color: white; padding: 6px 12px; font-weight: bold; margin-top: 20px; margin-bottom: 12px; }
+        .doc-grid { display: grid; grid-template-columns: 140px 1fr; row-gap: 12px; font-size: 1.05rem; }
         .doc-label { font-weight: bold; color: #475569; }
-        .doc-value { color: #1e293b; border-bottom: 1px dotted #cbd5e1; min-height: 24px; padding-bottom: 2px; }
+        .doc-value { color: #1e293b; border-bottom: 1px dotted #cbd5e1; min-height: 24px; }
 
-        /* Print Mode optimization adjustments */
+        /* 🌌 KUNDLI & ASTROLOGY TOOL VISUALS */
+        .calculator-box { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 25px; text-align: left; }
+        @media (max-width: 600px) { .calculator-box { grid-template-columns: 1fr; } }
+        .result-display { background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 10px; text-align: left; }
+        .guna-badge { display: inline-block; background: #e0f2fe; color: #0369a1; padding: 4px 12px; border-radius: 12px; font-weight: bold; margin-bottom: 10px; }
+
+        /* 📅 MUHURAT CALENDAR MATRIX STYLES */
+        .muhurat-month-selector { margin-bottom: 25px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+        .month-btn { background: white; border: 1px solid #cbd5e1; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: bold; }
+        .month-btn.active { background: #0f7694; color: white; border-color: #0f7694; }
+        .dates-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; margin-top: 20px; }
+        .date-card { background: #f0fdf4; border: 1px solid #bbf7d0; padding: 20px; border-radius: 12px; text-align: left; position: relative; border-left: 6px solid #16a34a; }
+        .date-card h3 { margin: 0 0 5px 0; color: #166534; font-size: 1.3rem; }
+        .tithi-tag { font-size: 0.85rem; color: #15803d; font-weight: bold; background: #dcfce7; padding: 2px 8px; border-radius: 4px; display: inline-block; margin-bottom: 10px; }
+
         @media print {
-            body { background: white; }
-            .navbar, .back-nav, .form-panel, .print-btn-row { display: none !important; }
+            .navbar, .keyword-nav, .back-nav, .form-panel, .print-btn-row, .muhurat-month-selector { display: none !important; }
             #template-page { margin: 0; padding: 0; max-width: 100%; }
-            .document-preview-sheet { border: 8px double var(--template-color); box-shadow: none; padding: 20px; }
+            .document-preview-sheet { border: 8px double var(--template-color); box-shadow: none; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Top Navbar Row -->
     <div class="navbar">
-        <div class="brand" onclick="goBackToHub()">SHAADI BIO</div>
-        <div class="menu"><a href="#" onclick="goBackToHub()">Home</a></div>
+        <div class="brand" onclick="switchTool('biodata-hub')">SHAADI GUIDE</div>
     </div>
 
-    <!-- 🏠 SECTION 1: THE DESIGN HUB CATALOG -->
-    <div id="hub-page">
-        <div class="hero-section">
-            <div class="hero-text">
-                <h1>Create Your Marriage Biodata Online</h1>
-                <p>Select from professionally designed, print-ready document structures tailored beautifully for family match proposals.</p>
-                <div class="features-list">
-                    <div class="feature-item">No registration required</div>
-                    <div class="feature-item">Beautiful print borders</div>
-                    <div class="feature-item">Fill details in real-time</div>
-                    <div class="feature-item">100% Free download layout</div>
-                </div>
-            </div>
-            <div class="hero-video-placeholder">
-                <div class="play-btn">▶</div>
-                <p style="font-weight: 600; margin: 0; color: #334155;">Visual Editor Engine</p>
-            </div>
-        </div>
+    <div class="keyword-nav">
+        <button class="nav-tool-btn active" id="btn-biodata-hub" onclick="switchTool('biodata-hub')">📋 Matrimony Bios Maker</button>
+        <button class="nav-tool-btn" id="btn-astrology-guide" onclick="switchTool('astrology-guide')">🌌 Kundli & Astrology Guide</button>
+        <button class="nav-tool-btn" id="btn-shubh-muhurat" onclick="switchTool('shubh-muhurat')">📅 Shubh Muhurat Dates</button>
+    </div>
 
+
+    <div id="biodata-hub" class="tool-section active-view container">
         <div class="template-section">
-            <h2>Choose Your Template Style</h2>
+            <h2 style="font-size:2rem; margin-bottom:10px;">Matrimony Biodata Maker</h2>
+            <p style="color:#64748b; margin-bottom:30px;">Select a traditional document presentation layout frame to generate your wedding profile details.</p>
+            
             <div class="language-filter">
                 <button class="lang-btn active" onclick="changeLanguage('en', this)">English</button>
                 <button class="lang-btn" onclick="changeLanguage('hi', this)">हिन्दी (Hindi)</button>
@@ -338,117 +133,126 @@
             </div>
 
             <div class="grid">
-                <!-- Green Card -->
-                <div class="card">
-                    <div class="preview-box theme-green"><h3>Classic Green</h3><div class="mini-line"></div></div>
-                    <div class="card-info">
-                        <p>Elegant forest green styling build with rich line accents.</p>
-                        <button class="action-btn" onclick="openTemplateEditor('green', '#2e7d32')">👁 Use This Template</button>
+                <div class="card"><div class="preview-box theme-green"><h3>Classic Green</h3></div><div class="card-info"><button class="action-btn" onclick="openTemplateEditor('green', '#2e7d32')">👁 Use Style</button></div></div>
+                <div class="card"><div class="preview-box theme-red"><h3>Modern Red</h3></div><div class="card-info"><button class="action-btn" onclick="openTemplateEditor('red', '#c62828')">👁 Use Style</button></div></div>
+                <div class="card"><div class="preview-box theme-maroon"><h3>Traditional Maroon</h3></div><div class="card-info"><button class="action-btn" onclick="openTemplateEditor('maroon', '#7a0016')">👁 Use Style</button></div></div>
+                <div class="card"><div class="preview-box theme-blue"><h3>Ocean Blue</h3></div><div class="card-info"><button class="action-btn" onclick="openTemplateEditor('blue', '#0f7694')">👁 Use Style</button></div></div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="astrology-guide" class="tool-section container">
+        <div class="panel">
+            <h2>Kundli Match & Astrology Guide</h2>
+            <p style="color: #64748b; margin-bottom:30px;">Check basic Vedic astrology metrics and compatibility alignments before moving forward with profiles.</p>
+            
+            <div class="calculator-box">
+                <div>
+                    <div class="form-group"><label>Boy's Moon Sign (Rashi)</label>
+                        <select id="boyRashi"><option value="Aries">Mesh (Aries)</option><option value="Taurus">Vrishabha (Taurus)</option><option value="Gemini">Mithun (Gemini)</option><option value="Cancer">Kark (Cancer)</option><option value="Leo">Simha (Leo)</option><option value="Virgo">Kanya (Virgo)</option><option value="Libra">Tula (Libra)</option><option value="Scorpio">Vrishchik (Scorpio)</option><option value="Sagittarius">Dhanu (Sagittarius)</option><option value="Capricorn">Makar (Capricorn)</option><option value="Aquarius">Kumbha (Aquarius)</option><option value="Pisces">Meen (Pisces)</option></select>
                     </div>
+                    <div class="form-group"><label>Girl's Moon Sign (Rashi)</label>
+                        <select id="girlRashi"><option value="Aries">Mesh (Aries)</option><option value="Taurus">Vrishabha (Taurus)</option><option value="Gemini">Mithun (Gemini)</option><option value="Cancer">Kark (Cancer)</option><option value="Leo">Simha (Leo)</option><option value="Virgo">Kanya (Virgo)</option><option value="Libra">Tula (Libra)</option><option value="Scorpio">Vrishchik (Scorpio)</option><option value="Sagittarius">Dhanu (Sagittarius)</option><option value="Capricorn">Makar (Capricorn)</option><option value="Aquarius">Kumbha (Aquarius)</option><option value="Pisces">Meen (Pisces)</option></select>
+                    </div>
+                    <button class="action-btn" style="background:var(--primary-blue); color:white; padding:14px;" onclick="calculateAstrologyMatch()">Calculate Match Score</button>
                 </div>
-                <!-- Red Card -->
-                <div class="card">
-                    <div class="preview-box theme-red"><h3>Modern Red</h3><div class="mini-line"></div></div>
-                    <div class="card-info">
-                        <p>Sleek modern layout featuring bright luxury crimson formatting accents.</p>
-                        <button class="action-btn" onclick="openTemplateEditor('red', '#c62828')">👁 Use This Template</button>
-                    </div>
-                </div>
-                <!-- Maroon Card -->
-                <div class="card">
-                    <div class="preview-box theme-maroon"><h3>Traditional Maroon</h3><div class="mini-line"></div></div>
-                    <div class="card-info">
-                        <p>Traditional deep auspicious maroon featuring holy header spaces.</p>
-                        <button class="action-btn" onclick="openTemplateEditor('maroon', '#7a0016')">👁 Use This Template</button>
-                    </div>
-                </div>
-                <!-- Blue Card -->
-                <div class="card">
-                    <div class="preview-box theme-blue"><h3>Ocean Blue</h3><div class="mini-line"></div></div>
-                    <div class="card-info">
-                        <p>A professional sapphire blue theme for clean data balance design.</p>
-                        <button class="action-btn" onclick="openTemplateEditor('blue', '#0f7694')">👁 Use This Template</button>
-                    </div>
+
+                <div class="result-display" id="astrologyResultArea">
+                    <div class="guna-badge">Ashtakoot Milan Score</div>
+                    <h3 style="margin: 5px 0 15px 0; font-size:1.8rem; color:#1e293b;">-- / 36 Gunas</h3>
+                    <p style="color:#475569; font-size:0.95rem; line-height:1.5;">Select the prospective bride and groom's Rashis on the left panel to calculate the structural compatibility reading instantly.</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 📄 SECTION 2: LIVE VISUAL DOCUMENT WORKSPACE EDITOR -->
-    <div id="template-page">
-        <div class="back-nav" onclick="goBackToHub()">← Back to Design Dashboard</div>
-        
-        <div class="editor-container">
-            <!-- Left Data Entry Form Panel -->
-            <div class="form-panel" id="dynamicFormInputs">
-                <h3 style="margin-top:0; color: var(--primary-blue);">Fill Your Information</h3>
-                <p style="font-size:0.85rem; color:#64748b; margin-bottom: 20px;">Type details here to see them update on the right real-time sheet layout.</p>
-                <!-- Filled via JS automatically depending on selected Language -->
+
+    <div id="shubh-muhurat" class="tool-section container">
+        <div class="panel" style="text-align: center;">
+            <h2 style="text-align:left;">Auspicious Wedding Dates (Shubh Muhurat)</h2>
+            <p style="text-align:left; color:#64748b; margin-bottom:30px;">Filter through upcoming traditional timelines to find the best dates with favorable planetary alignments.</p>
+            
+            <div class="muhurat-month-selector">
+                <button class="month-btn active" onclick="filterMuhuratMonth('June', this)">June 2026</button>
+                <button class="month-btn" onclick="filterMuhuratMonth('July', this)">July 2026</button>
+                <button class="month-btn" onclick="filterMuhuratMonth('November', this)">November 2026</button>
+                <button class="month-btn" onclick="filterMuhuratMonth('December', this)">December 2026</button>
             </div>
 
-            <!-- Right Document Preview Sheet Frame -->
+            <div class="dates-grid" id="muhuratDisplayGrid">
+                </div>
+        </div>
+    </div>
+
+
+    <div id="template-page">
+        <div class="back-nav" style="color: var(--primary-blue); font-weight:bold; cursor:pointer; margin-bottom:20px;" onclick="goBackToHub()">← Back to Design Dashboard</div>
+        <div class="editor-container">
+            <div class="form-panel" id="dynamicFormInputs"></div>
             <div>
                 <div class="document-preview-sheet" id="previewSheet">
-                    <div class="doc-header">
-                        <h2 id="sheetHeaderTitle">BIO DATA</h2>
-                        <p id="sheetHeaderSubtitle">|| Shree Ganeshaya Namah ||</p>
-                    </div>
-
+                    <div class="doc-header"><h2 id="sheetHeaderTitle">BIO DATA</h2><p id="sheetHeaderSubtitle">|| Shree Ganeshaya Namah ||</p></div>
                     <div class="doc-section-title" id="secTitle1">Personal Details</div>
-                    <div class="doc-grid">
-                        <div class="doc-label" id="lbl_name">Full Name:</div><div class="doc-value" id="val_name"></div>
-                        <div class="doc-label" id="lbl_dob">Birth Date:</div><div class="doc-value" id="val_dob"></div>
-                        <div class="doc-label" id="lbl_height">Height:</div><div class="doc-value" id="val_height"></div>
-                        <div class="doc-label" id="lbl_education">Education:</div><div class="doc-value" id="val_education"></div>
-                        <div class="doc-label" id="lbl_job">Occupation:</div><div class="doc-value" id="val_job"></div>
-                    </div>
-
-                    <div class="doc-section-title" id="secTitle2">Family & Contact</div>
-                    <div class="doc-grid">
-                        <div class="doc-label" id="lbl_father">Father Name:</div><div class="doc-value" id="val_father"></div>
-                        <div class="doc-label" id="lbl_native">Native Place:</div><div class="doc-value" id="val_native"></div>
-                        <div class="doc-label" id="lbl_contact">Contact No:</div><div class="doc-value" id="val_contact"></div>
-                    </div>
+                    <div class="doc-grid" id="sheetFieldsArea"></div>
                 </div>
-                
-                <div class="print-btn-row" style="margin-top: 20px;">
-                    <button class="action-btn" style="background: #10b981; color: white; padding:15px; font-size:1.1rem;" onclick="window.print()">🖨 Print or Save as PDF</button>
-                </div>
+                <div class="print-btn-row" style="margin-top:20px;"><button class="action-btn" style="background:#10b981; color:white; padding:15px;" onclick="window.print()">🖨 Print / Save PDF</button></div>
             </div>
         </div>
     </div>
 
-    <!-- Script Engine Core Mapping Document States -->
+
     <script>
         let currentLang = 'en';
 
-        // Translation Matrix Dictionary for Form Fields & Labels
-        const labelsData = {
-            en: {
-                mainTitle: "BIO DATA", subTitle: "|| Shree Ganeshaya Namah ||",
-                sec1: "Personal Details", sec2: "Family & Contact Details",
-                name: "Full Name", dob: "Birth Date", height: "Height", edu: "Education", job: "Occupation",
-                father: "Father's Name", native: "Native Place", contact: "Contact Number"
-            },
-            hi: {
-                mainTitle: "बायोडाटा", subTitle: "|| श्री गणेशाय नमः ||",
-                sec1: "व्यक्तिगत विवरण", sec2: "पारिवारिक एवं संपर्क विवरण",
-                name: "पूरा नाम", dob: "जन्म तिथि", height: "ऊंचाई", edu: "शैक्षणिक योग्यता", job: "व्यवसाय/नोकरी",
-                father: "पिता का नाम", native: "मूल निवास स्थान", contact: "संपर्क नंबर"
-            },
-            mr: {
-                mainTitle: "बायोडाटा", subTitle: "|| श्री गणेशाय नमः ||",
-                sec1: "वैयक्तिक माहिती", sec2: "कौटुंबिक आणि संपर्क माहिती",
-                name: "पूर्ण नाव", dob: "जन्म तारीख", height: "उंची", edu: "शिक्षण", job: "नोकरी/व्यवसाय",
-                father: "वडिलांचे नाव", native: "मूळ गाव", contact: "संपर्क क्रमांक"
-            },
-            gu: {
-                mainTitle: "બાયોડેટા", subTitle: "|| શ્રી ગણેશાય નમઃ ||",
-                sec1: "વ્યક્તિગત વિગતો", sec2: "કૌટુંબિક અને સંપર્ક વિગતો",
-                name: "પૂરું નામ", dob: "જન્મ તારીખ", height: "ઊંચાઈ", edu: "શિક્ષણ", job: "વ્યવસાય/નોકરી",
-                father: "પિતાનું નામ", native: "વતન", contact: "સંપર્ક નંબર"
-            }
+        // Static Astro Data Model Matrix for Muhurat Dates
+        const muhuratDb = {
+            June: [
+                { day: "June 15", weekday: "Monday", tithi: "Ekadashi", nakshatra: "Swati" },
+                { day: "June 21", weekday: "Sunday", tithi: "Dwitiya", nakshatra: "Uttara Phalguni" },
+                { day: "June 24", weekday: "Wednesday", tithi: "Panchami", nakshatra: "Hasta" },
+                { day: "June 27", weekday: "Saturday", tithi: "Ashtami", nakshatra: "Anuradha" }
+            ],
+            July: [
+                { day: "July 01", weekday: "Wednesday", tithi: "Dwitiya", nakshatra: "Uttarashadha" },
+                { day: "July 06", weekday: "Monday", tithi: "Saptami", nakshatra: "Uttara Bhadrapada" },
+                { day: "July 11", weekday: "Saturday", tithi: "Ekadashi", nakshatra: "Rohini" }
+            ],
+            November: [
+                { day: "November 21", weekday: "Saturday", tithi: "Dwadashi", nakshatra: "Revati" },
+                { day: "November 25", weekday: "Wednesday", tithi: "Pratipada", nakshatra: "Rohini" },
+                { day: "November 29", weekday: "Sunday", tithi: "Panchami", nakshatra: "Punarvasu" }
+            ],
+            December: [
+                { day: "December 04", weekday: "Friday", tithi: "Dashami", nakshatra: "Chitra" },
+                { day: "December 07", weekday: "Monday", tithi: "Trayodashi", nakshatra: "Anuradha" },
+                { day: "December 12", weekday: "Saturday", tithi: "Tritiya", nakshatra: "Uttarashadha" }
+            ]
         };
+
+        const labelsData = {
+            en: { mainTitle: "MATRIMONY BIO DATA", subTitle: "|| Shree Ganeshaya Namah ||", sec1: "Personal Details", name: "Full Name", dob: "Birth Date", height: "Height", edu: "Education", job: "Occupation", rashi: "Rashi / Moon Sign", manglik: "Manglik Status", father: "Father's Name", contact: "Contact Number" },
+            hi: { mainTitle: "बायोडाटा", subTitle: "|| श्री गणेशाय नमः ||", sec1: "व्यक्तिगत विवरण", name: "पूरा नाम", dob: "जन्म तिथि", height: "ऊंचाई", edu: "शैक्षणिक योग्यता", job: "व्यवसाय/नोकरी", rashi: "राशि", manglik: "मांगलिक स्थिति", father: "पिता का नाम", contact: "संपर्क नंबर" },
+            mr: { mainTitle: "बायोडाटा", subTitle: "|| श्री गणेशाय नमः ||", sec1: "वैयक्तिक माहिती", name: "पूर्ण नाव", dob: "जन्म तारीख", height: "उंची", edu: "शिक्षण", job: "नोकरी/व्यवसाय", rashi: "राशी", manglik: "मंगळ", father: "वडिलांचे नाव", contact: "संपर्क क्रमांक" },
+            gu: { mainTitle: "બાયોડેટા", subTitle: "|| શ્રી ગણેશાય નમઃ ||", sec1: "વ્યક્તિગત વિગતો", name: "પૂરું નામ", dob: "જન્મ તારીખ", height: "ઊંચાઈ", edu: "શિક્ષણ", job: "વ્યવસાય/નોકરી", rashi: "રાષિ", manglik: "માંગલિક", father: "પિતાનું નામ", contact: "સંપર્ક નંબર" }
+        };
+
+        function switchTool(toolId) {
+            document.querySelectorAll('.tool-section').forEach(section => section.classList.remove('active-view'));
+            document.querySelectorAll('.nav-tool-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('template-page').style.display = 'none';
+            
+            if(toolId === 'biodata-hub') {
+                document.getElementById('biodata-hub').style.display = 'block';
+            } else {
+                document.getElementById('biodata-hub').style.display = 'none';
+            }
+            
+            document.getElementById(toolId).classList.add('active-view');
+            document.getElementById('btn-' + toolId).classList.add('active');
+
+            if(toolId === 'shubh-muhurat') filterMuhuratMonth('June', document.querySelector('.month-btn'));
+        }
 
         function changeLanguage(lang, element) {
             currentLang = lang;
@@ -456,60 +260,84 @@
             element.classList.add('active');
         }
 
+        /* 📋 BIODATA COMPILER PANEL CONTROLS */
         function openTemplateEditor(themeName, colorHex) {
-            // Adjust visual accent variable dynamically
             document.documentElement.style.setProperty('--template-color', colorHex);
-            
-            // Switch layout visibility views like an app route change
-            document.getElementById('hub-page').style.display = 'none';
+            document.getElementById('biodata-hub').style.display = 'none';
             document.getElementById('template-page').style.display = 'block';
 
-            // Extract correct localized dictionary values
             const dictionary = labelsData[currentLang];
-
-            // Render Document preview framework labels accurately
             document.getElementById('sheetHeaderTitle').innerText = dictionary.mainTitle;
             document.getElementById('sheetHeaderSubtitle').innerText = dictionary.subTitle;
             document.getElementById('secTitle1').innerText = dictionary.sec1;
-            document.getElementById('secTitle2').innerText = dictionary.sec2;
 
-            document.getElementById('lbl_name').innerText = dictionary.name + ":";
-            document.getElementById('lbl_dob').innerText = dictionary.dob + ":";
-            document.getElementById('lbl_height').innerText = dictionary.height + ":";
-            document.getElementById('lbl_education').innerText = dictionary.edu + ":";
-            document.getElementById('lbl_job').innerText = dictionary.job + ":";
-            document.getElementById('lbl_father').innerText = dictionary.father + ":";
-            document.getElementById('lbl_native').innerText = dictionary.native + ":";
-            document.getElementById('lbl_contact').innerText = dictionary.contact + ":";
-
-            // Clear preview fields
-            const fields = ['name','dob','height','education','job','father','native','contact'];
-            fields.forEach(f => document.getElementById('val_' + f).innerText = "");
-
-            // Build form fields in real-time inside left entry module box
-            let formHtml = `<h3 style="margin-top:0; color: ${colorHex};">Fill Details (${currentLang.toUpperCase()})</h3>`;
+            const fields = ['name','dob','height','edu','job','rashi','manglik','father','contact'];
+            
+            let gridHtml = '';
+            let formHtml = `<h3 style="margin-top:0; color: ${colorHex};">Fill Matrix details</h3>`;
             
             fields.forEach(f => {
-                const labelText = dictionary[f === 'education' ? 'edu' : (f === 'job' ? 'job' : f)];
+                gridHtml += `<div class="doc-label">${dictionary[f]}:</div><div class="doc-value" id="val_${f}"></div>`;
                 formHtml += `
                     <div class="form-group">
-                        <label>${labelText}</label>
-                        <input type="text" id="input_${f}" oninput="updateSheetField('${f}', this.value)" placeholder="Enter ${labelText.toLowerCase()}">
+                        <label>${dictionary[f]}</label>
+                        <input type="text" oninput="document.getElementById('val_${f}').innerText = this.value" placeholder="Enter ${dictionary[f]}">
                     </div>`;
             });
             
+            document.getElementById('sheetFieldsArea').innerHTML = gridHtml;
             document.getElementById('dynamicFormInputs').innerHTML = formHtml;
-            window.scrollTo(0,0);
-        }
-
-        function updateSheetField(fieldId, value) {
-            document.getElementById('val_' + fieldId).innerText = value;
         }
 
         function goBackToHub() {
             document.getElementById('template-page').style.display = 'none';
-            document.getElementById('hub-page').style.display = 'block';
-            window.scrollTo(0,0);
+            document.getElementById('biodata-hub').style.display = 'block';
+        }
+
+        /* 🌌 VEDIC ASTROLOGY MATCHMAKING CALCULATOR LOGIC */
+        function calculateAstrologyMatch() {
+            const boy = document.getElementById('boyRashi').value;
+            const girl = document.getElementById('girlRashi').value;
+            const displayArea = document.getElementById('astrologyResultArea');
+
+            // Quick algorithm simulating Ashtakoot calculation variations
+            let score = 22; 
+            if (boy === girl) score = 32;
+            else if ((boy === "Aries" && girl === "Leo") || (boy === "Taurus" && girl === "Virgo")) score = 28;
+            else if ((boy === "Gemini" && girl === "Scorpio") || (boy === "Cancer" && girl === "Sagittarius")) score = 14;
+
+            let status = "Moderate Compatibility";
+            let color = "#b45309"; 
+            if (score >= 25) { status = "Excellent Match!"; color = "#16a34a"; }
+            else if (score < 18) { status = "Requires Remedy / High Dosha"; color = "#dc2626"; }
+
+            displayArea.innerHTML = `
+                <div class="guna-badge" style="background:${color}22; color:${color};">Ashtakoot Milan Score</div>
+                <h3 style="margin: 5px 0 15px 0; font-size:2.2rem; color:${color};">${score} / 36 Gunas</h3>
+                <p style="font-weight:bold; margin:0 0 8px 0; color:#1e293b;">Result: ${status}</p>
+                <p style="color:#64748b; font-size:0.9rem; margin:0; line-height:1.4;">Based on ${boy} and ${girl} alignments, the structural reading indicates stable compatibility. Review your complete regional charts for full calculations.</p>
+            `;
+        }
+
+        /* 📅 SHUBH MUHURAT DISPLAY ENGINE MANAGER */
+        function filterMuhuratMonth(monthName, btnElement) {
+            document.querySelectorAll('.month-btn').forEach(btn => btn.classList.remove('active'));
+            btnElement.classList.add('active');
+
+            const monthData = muhuratDb[monthName];
+            let cardsHtml = '';
+
+            monthData.forEach(item => {
+                cardsHtml += `
+                    <div class="date-card">
+                        <h3>${item.day}</h3>
+                        <div style="font-size:0.9rem; font-weight:600; color:#475569; margin-bottom:8px;">${item.weekday}</div>
+                        <span class="tithi-tag">Tithi: ${item.tithi}</span>
+                        <div style="font-size:0.85rem; color:#64748b;"><strong>Nakshatra:</strong> ${item.nakshatra}</div>
+                    </div>`;
+            });
+
+            document.getElementById('muhuratDisplayGrid').innerHTML = cardsHtml;
         }
     </script>
 </body>
