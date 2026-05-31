@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ShaadiGuide.in - Matrimony Bio, Kundli & Shubh Muhurat Hub</title>
+    
     <style>
+        /* Base Website Styles */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -13,6 +15,32 @@
             color: #333;
             text-align: center;
         }
+        
+        /* Language Selector Bar Styling */
+        .language-banner {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        /* Hiding the ugly default Google Translate header box */
+        .goog-te-banner-frame.skiptranslate {
+            display: none !important;
+        }
+        body {
+            top: 0px !important;
+        }
+        #google_translate_element {
+            display: inline-block;
+        }
+
+        /* Header & Content Styling */
         header {
             background-color: #ff5a60; /* Wedding warm red/pink */
             color: white;
@@ -38,6 +66,13 @@
 </head>
 <body>
 
+    <!-- 🌐 LANGUAGE SELECTOR BAR -->
+    <div class="language-banner">
+        <span>Translate Site / भाषा चुनें: </span>
+        <!-- Google Translate will inject the dropdown button right here -->
+        <div id="google_translate_element"></div>
+    </div>
+
     <header>
         <h1>Welcome to ShaadiGuide.in</h1>
         <p>Your Ultimate Pre-Wedding & Matrimony Guide</p>
@@ -50,6 +85,19 @@
             Stay tuned—we are launching very soon!
         </p>
     </div>
+
+    <!-- ⚙️ GOOGLE TRANSLATE SCRIPT -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                /* Included high-traffic regional Indian languages */
+                includedLanguages: 'en,hi,bn,mr,te,ta,gu,ur', 
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </body>
 </html>
