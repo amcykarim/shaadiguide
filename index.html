@@ -53,7 +53,7 @@
 
         /* 📋 BIODATA DESIGN LAYOUT */
         .template-section { text-align: center; }
-        .language-filter { margin-bottom: 30px; display: flex; justify-content: center; gap: 10px; }
+        .language-filter { margin-bottom: 30px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
         .lang-btn { background: white; border: 2px solid #cbd5e1; padding: 8px 20px; border-radius: 20px; cursor: pointer; font-weight: 600; }
         .lang-btn.active { background: var(--primary-blue); color: white; border-color: var(--primary-blue); }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; }
@@ -103,16 +103,18 @@
         @media print {
             .navbar, .keyword-nav, .back-nav, .form-panel, .print-btn-row, .muhurat-month-selector { display: none !important; }
             #template-page { margin: 0; padding: 0; max-width: 100%; }
-            .document-preview-sheet { border: 8px double var(--template-color); box-shadow: none; }
+            .document-preview-sheet { border: 8px double var(--template-color); box-shadow: none; padding: 20px; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Platform Header bar -->
     <div class="navbar">
         <div class="brand" onclick="switchTool('biodata-hub')">SHAADI GUIDE</div>
     </div>
 
+    <!-- 🛠️ INTERACTIVE SUB-NAVIGATION -->
     <div class="keyword-nav">
         <button class="nav-tool-btn active" id="btn-biodata-hub" onclick="switchTool('biodata-hub')">📋 Matrimony Bios Maker</button>
         <button class="nav-tool-btn" id="btn-astrology-guide" onclick="switchTool('astrology-guide')">🌌 Kundli & Astrology Guide</button>
@@ -120,16 +122,21 @@
     </div>
 
 
+    <!-- 📋 FEATURE 1: MATRIMONY BIODATA GENERATOR HUB -->
     <div id="biodata-hub" class="tool-section active-view container">
         <div class="template-section">
             <h2 style="font-size:2rem; margin-bottom:10px;">Matrimony Biodata Maker</h2>
             <p style="color:#64748b; margin-bottom:30px;">Select a traditional document presentation layout frame to generate your wedding profile details.</p>
             
+            <!-- Expanded Language Filter Array (7 Languages) -->
             <div class="language-filter">
                 <button class="lang-btn active" onclick="changeLanguage('en', this)">English</button>
                 <button class="lang-btn" onclick="changeLanguage('hi', this)">हिन्दी (Hindi)</button>
                 <button class="lang-btn" onclick="changeLanguage('mr', this)">मराठी (Marathi)</button>
                 <button class="lang-btn" onclick="changeLanguage('gu', this)">ગુજરાતી (Gujarati)</button>
+                <button class="lang-btn" onclick="changeLanguage('bn', this)">বাংলা (Bengali)</button>
+                <button class="lang-btn" onclick="changeLanguage('te', this)">తెలుగు (Telugu)</button>
+                <button class="lang-btn" onclick="changeLanguage('ta', this)">தமிழ் (Tamil)</button>
             </div>
 
             <div class="grid">
@@ -142,6 +149,7 @@
     </div>
 
 
+    <!-- 🌌 FEATURE 2: KUNDLI & ASTROLOGY MATCHING CALCULATOR -->
     <div id="astrology-guide" class="tool-section container">
         <div class="panel">
             <h2>Kundli Match & Astrology Guide</h2>
@@ -168,6 +176,7 @@
     </div>
 
 
+    <!-- 📅 FEATURE 3: SHUBH MUHURAT DATES DIRECTORY VIEW -->
     <div id="shubh-muhurat" class="tool-section container">
         <div class="panel" style="text-align: center;">
             <h2 style="text-align:left;">Auspicious Wedding Dates (Shubh Muhurat)</h2>
@@ -180,12 +189,12 @@
                 <button class="month-btn" onclick="filterMuhuratMonth('December', this)">December 2026</button>
             </div>
 
-            <div class="dates-grid" id="muhuratDisplayGrid">
-                </div>
+            <div class="dates-grid" id="muhuratDisplayGrid"></div>
         </div>
     </div>
 
 
+    <!-- 📄 LIVE BIODATA COMPILATION AREA -->
     <div id="template-page">
         <div class="back-nav" style="color: var(--primary-blue); font-weight:bold; cursor:pointer; margin-bottom:20px;" onclick="goBackToHub()">← Back to Design Dashboard</div>
         <div class="editor-container">
@@ -202,10 +211,10 @@
     </div>
 
 
+    <!-- JavaScript Core Controls -->
     <script>
         let currentLang = 'en';
 
-        // Static Astro Data Model Matrix for Muhurat Dates
         const muhuratDb = {
             June: [
                 { day: "June 15", weekday: "Monday", tithi: "Ekadashi", nakshatra: "Swati" },
@@ -230,11 +239,15 @@
             ]
         };
 
+        // Complete 7-Language Dictionary Schema Mapping
         const labelsData = {
             en: { mainTitle: "MATRIMONY BIO DATA", subTitle: "|| Shree Ganeshaya Namah ||", sec1: "Personal Details", name: "Full Name", dob: "Birth Date", height: "Height", edu: "Education", job: "Occupation", rashi: "Rashi / Moon Sign", manglik: "Manglik Status", father: "Father's Name", contact: "Contact Number" },
             hi: { mainTitle: "बायोडाटा", subTitle: "|| श्री गणेशाय नमः ||", sec1: "व्यक्तिगत विवरण", name: "पूरा नाम", dob: "जन्म तिथि", height: "ऊंचाई", edu: "शैक्षणिक योग्यता", job: "व्यवसाय/नोकरी", rashi: "राशि", manglik: "मांगलिक स्थिति", father: "पिता का नाम", contact: "संपर्क नंबर" },
-            mr: { mainTitle: "बायोडाटा", subTitle: "|| श्री गणेशाय नमः ||", sec1: "वैयक्तिक माहिती", name: "पूर्ण नाव", dob: "जन्म तारीख", height: "उंची", edu: "शिक्षण", job: "नोकरी/व्यवसाय", rashi: "राशी", manglik: "मंगळ", father: "वडिलांचे नाव", contact: "संपर्क क्रमांक" },
-            gu: { mainTitle: "બાયોડેટા", subTitle: "|| શ્રી ગણેશાય નમઃ ||", sec1: "વ્યક્તિગત વિગતો", name: "પૂરું નામ", dob: "જન્મ તારીખ", height: "ઊંચાઈ", edu: "શિક્ષણ", job: "વ્યવસાય/નોકરી", rashi: "રાષિ", manglik: "માંગલિક", father: "પિતાનું નામ", contact: "સંપર્ક નંબર" }
+            mr: { mainTitle: "बायოडाटा", subTitle: "|| श्री गणेशाय नमः ||", sec1: "वैयक्तिक माहिती", name: "पूर्ण नाव", dob: "जन्म तारीख", height: "उंची", edu: "शिक्षण", job: "नोकरी/व्यवसाय", rashi: "राशी", manglik: "मंगळ स्थिति", father: "वडिलांचे नाव", contact: "संपर्क क्रमांक" },
+            gu: { mainTitle: "બાયોડેટા", subTitle: "|| શ્રી ગણેશાય નમઃ ||", sec1: "વ્યક્તિગત વિગતો", name: "પૂરું નામ", dob: "જન્મ તારીખ", height: "ઊંચાઈ", edu: "શિક્ષણ", job: "વ્યવસાય/નોકરી", rashi: "રાષિ", manglik: "માંગલિક સ્થિતિ", father: "પિતાનું નામ", contact: "સંપર્ક નંબર" },
+            bn: { mainTitle: "বায়োডাটা", subTitle: "|| শ্রী গণেশায় নমঃ ||", sec1: "ব্যক্তিগত বিবরণ", name: "সম্পূর্ণ নাম", dob: "জন্ম তারিখ", height: "উচ্চতা", edu: "শিক্ষাগত যোগ্যতা", job: "পেশা / চাকরি", rashi: "রাশি", manglik: "মাঙ্গলিক স্থিতি", father: "পিতার নাম", contact: "যোগাযোগ নম্বর" },
+            te: { mainTitle: "బయోడేటా", subTitle: "|| శ్రీ గణేశాయ నమః ||", sec1: "వ్యక్తిగత వివరాలు", name: "పూర్తి పేరు", dob: "పుట్టిన తేదీ", height: "ఎత్తు", edu: "విద్యార్హత", job: "ఉద్యోగం / వృత్తి", rashi: "రాశి", manglik: "మాంగ్లిక్ స్థితి", father: "తండ్రి పేరు", contact: "సంప్రదించే సంఖ్య" },
+            ta: { mainTitle: "பயோடேட்டா", subTitle: "|| ஸ்ரீ கணேசாய நமஹ ||", sec1: "தனிப்பட்ட விவரங்கள்", name: "முழு பெயர்", dob: "பிறந்த தேதி", height: "உயரம்", edu: "கல்வித் தகுதி", job: "வேலை / தொழில்", rashi: "ராசி", manglik: "செவ்வாய் தோஷம்", father: "தந்தையின் பெயர்", contact: "தொடர்பு எண்" }
         };
 
         function switchTool(toolId) {
@@ -260,7 +273,6 @@
             element.classList.add('active');
         }
 
-        /* 📋 BIODATA COMPILER PANEL CONTROLS */
         function openTemplateEditor(themeName, colorHex) {
             document.documentElement.style.setProperty('--template-color', colorHex);
             document.getElementById('biodata-hub').style.display = 'none';
@@ -274,7 +286,7 @@
             const fields = ['name','dob','height','edu','job','rashi','manglik','father','contact'];
             
             let gridHtml = '';
-            let formHtml = `<h3 style="margin-top:0; color: ${colorHex};">Fill Matrix details</h3>`;
+            let formHtml = `<h3 style="margin-top:0; color: ${colorHex};">Fill Layout details</h3>`;
             
             fields.forEach(f => {
                 gridHtml += `<div class="doc-label">${dictionary[f]}:</div><div class="doc-value" id="val_${f}"></div>`;
@@ -294,13 +306,11 @@
             document.getElementById('biodata-hub').style.display = 'block';
         }
 
-        /* 🌌 VEDIC ASTROLOGY MATCHMAKING CALCULATOR LOGIC */
         function calculateAstrologyMatch() {
             const boy = document.getElementById('boyRashi').value;
             const girl = document.getElementById('girlRashi').value;
             const displayArea = document.getElementById('astrologyResultArea');
 
-            // Quick algorithm simulating Ashtakoot calculation variations
             let score = 22; 
             if (boy === girl) score = 32;
             else if ((boy === "Aries" && girl === "Leo") || (boy === "Taurus" && girl === "Virgo")) score = 28;
@@ -319,7 +329,6 @@
             `;
         }
 
-        /* 📅 SHUBH MUHURAT DISPLAY ENGINE MANAGER */
         function filterMuhuratMonth(monthName, btnElement) {
             document.querySelectorAll('.month-btn').forEach(btn => btn.classList.remove('active'));
             btnElement.classList.add('active');
