@@ -10,6 +10,7 @@
             --accent-teal: #14b8a6;
             --bg-light: #f0fdfa;
             --card-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            --template-color: #2e7d32; /* Default theme color */
         }
 
         body {
@@ -42,12 +43,10 @@
             font-size: 0.95rem;
         }
 
-        /* 🏠 MAIN HUB PAGE (Visible by default) */
+        /* HUB PAGE LAYOUT */
         #hub-page {
             display: block;
         }
-
-        /* Hero Section */
         .hero-section {
             max-width: 1200px;
             margin: 40px auto;
@@ -76,14 +75,12 @@
             grid-template-columns: 1fr 1fr;
             gap: 10px;
             margin: 25px 0;
-            text-align: left;
         }
         .feature-item {
             display: flex;
             align-items: center;
             gap: 8px;
             font-size: 0.95rem;
-            color: #2c3e50;
         }
         .feature-item::before {
             content: "✓";
@@ -92,7 +89,6 @@
             background: #d1fae5;
             border-radius: 50%;
             padding: 2px 6px;
-            font-size: 0.8rem;
         }
         .hero-video-placeholder {
             background: white;
@@ -112,28 +108,17 @@
             justify-content: center;
             color: white;
             font-size: 1.5rem;
-            cursor: pointer;
             margin-bottom: 15px;
         }
 
-        /* Main Selector Area */
         .template-section {
             max-width: 1200px;
             margin: 60px auto;
             padding: 0 20px;
             text-align: center;
         }
-        .template-section h2 {
-            font-size: 2.2rem;
-            color: #1e293b;
-            margin-bottom: 10px;
-        }
-        .template-section p {
-            color: #64748b;
-            margin-bottom: 30px;
-        }
-
-        /* Language Toggle Filter Buttons */
+        .template-section h2 { font-size: 2.2rem; color: #1e293b; }
+        
         .language-filter {
             margin-bottom: 40px;
             display: flex;
@@ -149,7 +134,6 @@
             cursor: pointer;
             font-weight: 600;
             color: #475569;
-            transition: transform 0.2s, background 0.2s;
         }
         .lang-btn.active {
             background: var(--primary-blue);
@@ -157,14 +141,11 @@
             border-color: var(--primary-blue);
         }
 
-        /* Interactive Template Grid */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 30px;
         }
-
-        /* Dynamic Theme Cards styling */
         .card {
             background: white;
             border-radius: 12px;
@@ -172,14 +153,10 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            border: 3px solid transparent;
-            transition: transform 0.3s, border-color 0.3s;
+            transition: transform 0.3s;
         }
-        .card:hover {
-            transform: translateY(-5px);
-        }
+        .card:hover { transform: translateY(-5px); }
         
-        /* Mini Visual Preview Windows */
         .preview-box {
             height: 150px;
             padding: 20px;
@@ -188,35 +165,18 @@
             flex-direction: column;
             justify-content: space-between;
             text-align: left;
-            position: relative;
         }
-        .preview-box::after {
-            content: "BIO DATA";
-            position: absolute;
-            bottom: 10px; right: 15px;
-            opacity: 0.15; font-size: 2.2rem; font-weight: bold;
-        }
-        .mini-line {
-            height: 6px; background: rgba(255,255,255,0.3); border-radius: 3px; margin-bottom: 8px; width: 80%;
-        }
+        .mini-line { height: 6px; background: rgba(255,255,255,0.3); border-radius: 3px; margin-bottom: 8px; width: 80%; }
         .mini-line.short { width: 40%; }
 
-        /* Color Variations from User Image Layout */
         .theme-green { background: linear-gradient(135deg, #1e3a1e, #2e7d32); }
         .theme-red { background: linear-gradient(135deg, #4a0e0e, #c62828); }
         .theme-maroon { background: linear-gradient(135deg, #3a0007, #7a0016); }
         .theme-blue { background: linear-gradient(135deg, #0f2027, #203a43); }
 
-        .card-info {
-            padding: 20px;
-            text-align: left;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .card-info h3 { margin: 0 0 10px 0; font-size: 1.25rem; color: #1e293b; }
-        .card-info p { font-size: 0.9rem; color: #64748b; margin: 0 0 15px 0; line-height: 1.4; }
+        .card-info { padding: 20px; text-align: left; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;}
+        .card-info h3 { margin: 0 0 10px 0; color: #1e293b; }
+        .card-info p { font-size: 0.9rem; color: #64748b; margin-bottom: 15px; }
         
         .action-btn {
             background-color: #22d3ee;
@@ -228,7 +188,6 @@
             font-weight: bold;
             font-size: 0.95rem;
             cursor: pointer;
-            transition: background 0.2s;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -236,10 +195,10 @@
         }
         .action-btn:hover { background-color: var(--accent-teal); color: white; }
 
-        /* 📄 FULL TEMPLATE DEDICATED PAGE LAYOUT (Hidden by default) */
+        /* 📄 VISUAL DOCUMENT PAGE LAYOUT */
         #template-page {
             display: none;
-            max-width: 900px;
+            max-width: 1100px;
             margin: 40px auto;
             padding: 0 20px;
         }
@@ -251,73 +210,126 @@
             font-weight: bold;
             cursor: pointer;
             margin-bottom: 25px;
-            font-size: 1.1rem;
         }
-        .back-nav:hover {
-            color: var(--accent-teal);
+        
+        /* Two Column Editor System Layout */
+        .editor-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
         }
-        .workspace-layout {
+        @media (max-width: 900px) {
+            .editor-container { grid-template-columns: 1fr; }
+        }
+
+        /* Left Column Input Panel */
+        .form-panel {
             background: white;
-            border-radius: 16px;
-            box-shadow: var(--card-shadow);
-            padding: 35px;
-            border-top: 8px solid var(--primary-blue);
-        }
-        pre {
-            background: #f8fafc;
-            border: 2px solid #e2e8f0;
-            padding: 25px;
+            padding: 30px;
             border-radius: 12px;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 1.1rem;
-            white-space: pre-wrap;
-            overflow-x: auto;
-            color: #1e293b;
-            line-height: 1.6;
+            box-shadow: var(--card-shadow);
         }
-        .copy-success-msg {
-            color: #10b981;
-            font-weight: bold;
-            margin-top: 15px;
-            font-size: 1.1rem;
-            display: none;
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #475569;
+            font-size: 0.9rem;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        /* Right Column Live Printable Document Preview Sheet */
+        .document-preview-sheet {
+            background: white;
+            border: 12px double var(--template-color);
+            padding: 40px;
+            box-shadow: var(--card-shadow);
+            min-height: 600px;
+            text-align: left;
+            position: relative;
+        }
+        .doc-header {
             text-align: center;
+            color: var(--template-color);
+            border-bottom: 2px dashed var(--template-color);
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        .doc-header h2 { margin: 0; font-size: 2rem; letter-spacing: 1px; }
+        .doc-header p { margin: 5px 0 0 0; font-size: 0.9rem; font-weight: bold; opacity: 0.8; }
+        
+        .doc-section-title {
+            background: var(--template-color);
+            color: white;
+            padding: 6px 12px;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+        
+        .doc-grid {
+            display: grid;
+            grid-template-columns: 130px 1fr;
+            row-gap: 12px;
+            column-gap: 10px;
+            font-size: 1.05rem;
+            align-items: center;
+        }
+        .doc-label { font-weight: bold; color: #475569; }
+        .doc-value { color: #1e293b; border-bottom: 1px dotted #cbd5e1; min-height: 24px; padding-bottom: 2px; }
+
+        /* Print Mode optimization adjustments */
+        @media print {
+            body { background: white; }
+            .navbar, .back-nav, .form-panel, .print-btn-row { display: none !important; }
+            #template-page { margin: 0; padding: 0; max-width: 100%; }
+            .document-preview-sheet { border: 8px double var(--template-color); box-shadow: none; padding: 20px; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Top Navbar Row -->
     <div class="navbar">
         <div class="brand" onclick="goBackToHub()">SHAADI BIO</div>
-        <div class="menu">
-            <a href="#" onclick="goBackToHub()">Home</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
-        </div>
+        <div class="menu"><a href="#" onclick="goBackToHub()">Home</a></div>
     </div>
 
+    <!-- 🏠 SECTION 1: THE DESIGN HUB CATALOG -->
     <div id="hub-page">
         <div class="hero-section">
             <div class="hero-text">
                 <h1>Create Your Marriage Biodata Online</h1>
-                <p>Create a professional marriage biodata in minutes with our easy-to-use online library templates. Choose from beautiful layouts, customize your details, and download—all for free!</p>
+                <p>Select from professionally designed, print-ready document structures tailored beautifully for family match proposals.</p>
                 <div class="features-list">
                     <div class="feature-item">No registration required</div>
-                    <div class="feature-item">5+ professional styles</div>
-                    <div class="feature-item">Mobile responsive layouts</div>
-                    <div class="feature-item">Instant copy & download</div>
+                    <div class="feature-item">Beautiful print borders</div>
+                    <div class="feature-item">Fill details in real-time</div>
+                    <div class="feature-item">100% Free download layout</div>
                 </div>
             </div>
             <div class="hero-video-placeholder">
                 <div class="play-btn">▶</div>
-                <p style="font-weight: 600; margin: 0; color: #334155;">Template Dashboard Preview</p>
+                <p style="font-weight: 600; margin: 0; color: #334155;">Visual Editor Engine</p>
             </div>
         </div>
 
         <div class="template-section">
-            <h2>Choose Your Template</h2>
-            <p>Select from our professionally designed marriage templates. Each layout is optimized for high readability and beautiful styling.</p>
-
+            <h2>Choose Your Template Style</h2>
             <div class="language-filter">
                 <button class="lang-btn active" onclick="changeLanguage('en', this)">English</button>
                 <button class="lang-btn" onclick="changeLanguage('hi', this)">हिन्दी (Hindi)</button>
@@ -326,114 +338,115 @@
             </div>
 
             <div class="grid">
-                <div class="card" id="card-green">
-                    <div class="preview-box theme-green">
-                        <div style="font-size:0.8rem; font-weight:bold; letter-spacing:1px;">PERSONAL DETAILS</div>
-                        <div>
-                            <div class="mini-line"></div><div class="mini-line short"></div>
-                        </div>
-                    </div>
+                <!-- Green Card -->
+                <div class="card">
+                    <div class="preview-box theme-green"><h3>Classic Green</h3><div class="mini-line"></div></div>
                     <div class="card-info">
-                        <div>
-                            <h3>Classic Green</h3>
-                            <p>Elegant dark forest green styling built elegantly for high-tier professional biodatas.</p>
-                        </div>
-                        <button class="action-btn" onclick="openTemplatePage('green')">👁 Use This Template</button>
+                        <p>Elegant forest green styling build with rich line accents.</p>
+                        <button class="action-btn" onclick="openTemplateEditor('green', '#2e7d32')">👁 Use This Template</button>
                     </div>
                 </div>
-
-                <div class="card" id="card-red">
-                    <div class="preview-box theme-red">
-                        <div style="font-size:0.8rem; font-weight:bold; letter-spacing:1px;">VIBRANT DETAILS</div>
-                        <div>
-                            <div class="mini-line"></div><div class="mini-line"></div>
-                        </div>
-                    </div>
+                <!-- Red Card -->
+                <div class="card">
+                    <div class="preview-box theme-red"><h3>Modern Red</h3><div class="mini-line"></div></div>
                     <div class="card-info">
-                        <div>
-                            <h3>Modern Red</h3>
-                            <p>Bold crimson header design structure engineered specifically for modern corporate professionals.</p>
-                        </div>
-                        <button class="action-btn" onclick="openTemplatePage('red')">👁 Use This Template</button>
+                        <p>Sleek modern layout featuring bright luxury crimson formatting accents.</p>
+                        <button class="action-btn" onclick="openTemplateEditor('red', '#c62828')">👁 Use This Template</button>
                     </div>
                 </div>
-
-                <div class="card" id="card-maroon">
-                    <div class="preview-box theme-maroon">
-                        <div style="font-size:0.75rem; font-weight:bold; letter-spacing:1px;">|| SHRI GANESH ||</div>
-                        <div>
-                            <div class="mini-line"></div><div class="mini-line short"></div>
-                        </div>
-                    </div>
+                <!-- Maroon Card -->
+                <div class="card">
+                    <div class="preview-box theme-maroon"><h3>Traditional Maroon</h3><div class="mini-line"></div></div>
                     <div class="card-info">
-                        <div>
-                            <h3>Traditional Maroon</h3>
-                            <p>Cultural auspicious maroon template layout prioritizing detailed astrological lineages.</p>
-                        </div>
-                        <button class="action-btn" onclick="openTemplatePage('maroon')">👁 Use This Template</button>
+                        <p>Traditional deep auspicious maroon featuring holy header spaces.</p>
+                        <button class="action-btn" onclick="openTemplateEditor('maroon', '#7a0016')">👁 Use This Template</button>
                     </div>
                 </div>
-
-                <div class="card" id="card-blue">
-                    <div class="preview-box theme-blue">
-                        <div style="font-size:0.8rem; font-weight:bold; letter-spacing:1px;">BIO DATA PROFILE</div>
-                        <div>
-                            <div class="mini-line"></div><div class="mini-line short"></div>
-                        </div>
-                    </div>
+                <!-- Blue Card -->
+                <div class="card">
+                    <div class="preview-box theme-blue"><h3>Ocean Blue</h3><div class="mini-line"></div></div>
                     <div class="card-info">
-                        <div>
-                            <h3>Ocean Blue</h3>
-                            <p>Calming royal deep-sea theme built for slick, clean layouts and optimal clarity.</p>
-                        </div>
-                        <button class="action-btn" onclick="openTemplatePage('blue')">👁 Use This Template</button>
+                        <p>A professional sapphire blue theme for clean data balance design.</p>
+                        <button class="action-btn" onclick="openTemplateEditor('blue', '#0f7694')">👁 Use This Template</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- 📄 SECTION 2: LIVE VISUAL DOCUMENT WORKSPACE EDITOR -->
     <div id="template-page">
         <div class="back-nav" onclick="goBackToHub()">← Back to Design Dashboard</div>
         
-        <div class="workspace-layout">
-            <h2 id="pageTitle" style="color: var(--primary-blue); margin-top:0; font-size: 1.8rem;">Template Workspace</h2>
-            <p style="color: #64748b; margin-bottom: 25px;">Your selected template copy layout. You can highlight, copy, or edit directly in the text window below.</p>
-            
-            <pre id="pageTemplateBody" contenteditable="true"></pre>
-            
-            <button class="action-btn" style="background: var(--primary-blue); color: white; padding: 16px; font-size: 1.1rem; margin-top: 20px;" onclick="copyPageText()">📋 Copy Template to Clipboard</button>
-            <div class="copy-success-msg" id="pageCopySuccess">&nbsp;</div>
+        <div class="editor-container">
+            <!-- Left Data Entry Form Panel -->
+            <div class="form-panel" id="dynamicFormInputs">
+                <h3 style="margin-top:0; color: var(--primary-blue);">Fill Your Information</h3>
+                <p style="font-size:0.85rem; color:#64748b; margin-bottom: 20px;">Type details here to see them update on the right real-time sheet layout.</p>
+                <!-- Filled via JS automatically depending on selected Language -->
+            </div>
+
+            <!-- Right Document Preview Sheet Frame -->
+            <div>
+                <div class="document-preview-sheet" id="previewSheet">
+                    <div class="doc-header">
+                        <h2 id="sheetHeaderTitle">BIO DATA</h2>
+                        <p id="sheetHeaderSubtitle">|| Shree Ganeshaya Namah ||</p>
+                    </div>
+
+                    <div class="doc-section-title" id="secTitle1">Personal Details</div>
+                    <div class="doc-grid">
+                        <div class="doc-label" id="lbl_name">Full Name:</div><div class="doc-value" id="val_name"></div>
+                        <div class="doc-label" id="lbl_dob">Birth Date:</div><div class="doc-value" id="val_dob"></div>
+                        <div class="doc-label" id="lbl_height">Height:</div><div class="doc-value" id="val_height"></div>
+                        <div class="doc-label" id="lbl_education">Education:</div><div class="doc-value" id="val_education"></div>
+                        <div class="doc-label" id="lbl_job">Occupation:</div><div class="doc-value" id="val_job"></div>
+                    </div>
+
+                    <div class="doc-section-title" id="secTitle2">Family & Contact</div>
+                    <div class="doc-grid">
+                        <div class="doc-label" id="lbl_father">Father Name:</div><div class="doc-value" id="val_father"></div>
+                        <div class="doc-label" id="lbl_native">Native Place:</div><div class="doc-value" id="val_native"></div>
+                        <div class="doc-label" id="lbl_contact">Contact No:</div><div class="doc-value" id="val_contact"></div>
+                    </div>
+                </div>
+                
+                <div class="print-btn-row" style="margin-top: 20px;">
+                    <button class="action-btn" style="background: #10b981; color: white; padding:15px; font-size:1.1rem;" onclick="window.print()">🖨 Print or Save as PDF</button>
+                </div>
+            </div>
         </div>
     </div>
 
+    <!-- Script Engine Core Mapping Document States -->
     <script>
         let currentLang = 'en';
 
-        const templatesData = {
+        // Translation Matrix Dictionary for Form Fields & Labels
+        const labelsData = {
             en: {
-                green: "=== CLASSIC GREEN TEMPLATE (ENGLISH) ===\nFull Name: \nDate of Birth: \nHeight: \nEducation: \nProfession: \nFather's Name: \nContact Number: ",
-                red: "=== MODERN RED TEMPLATE (ENGLISH) ===\nName: \nDesignation: \nCompany Name: \nAnnual Salary: \nWork Location: \nFamily Location: ",
-                maroon: "=== TRADITIONAL MAROON TEMPLATE (ENGLISH) ===\n|| Shri Ganeshaya Namah ||\nFull Name: \nGotra: \nNakshatra: \nRashi: \nManglik (Yes/No): \nNative Place: ",
-                blue: "📱 OCEAN BLUE MOBILE LAYOUT (ENGLISH) 📱\n• Name: \n• Age/Height: \n• Occupation: \n• Location: \n• WhatsApp: "
+                mainTitle: "BIO DATA", subTitle: "|| Shree Ganeshaya Namah ||",
+                sec1: "Personal Details", sec2: "Family & Contact Details",
+                name: "Full Name", dob: "Birth Date", height: "Height", edu: "Education", job: "Occupation",
+                father: "Father's Name", native: "Native Place", contact: "Contact Number"
             },
             hi: {
-                green: "=== क्लासिक ग्रीन टेम्पलेट (हिंदी) ===\nपूरा नाम: \nजन्म तिथि: \nऊंचाई: \nशैक्षणिक योग्यता: \nव्यवसाय/नोकरी: \nपिता का नाम: \nसंपर्क सूत्र: ",
-                red: "=== मॉडर्न रेड टेम्पलेट (हिंदी) ===\nनाम: \nपदनाम (Designation): \nकंपनी का नाम: \nवार्षिक आय: \nकार्यस्थल: \nपरिवार का निवास स्थान: ",
-                maroon: "=== पारंपरिक मकरून टेम्पलेट (हिंदी) ===\n|| श्री गणेशाय नमः ||\nपूरा नाम: \nगोत्र: \nनक्षत्र: \nराशि: \nमांगलिक (हाँ/नहीं): \nमूल निवास स्थान: ",
-                blue: "📱 ओशन ब्लू मोबाइल प्रारूप (हिंदी) 📱\n• नाम: \n• आयु/ऊंचाई: \n• व्यवसाय/कार्य: \n• वर्तमान स्थान: \n• व्हाट्सएप नंबर: "
+                mainTitle: "बायोडाटा", subTitle: "|| श्री गणेशाय नमः ||",
+                sec1: "व्यक्तिगत विवरण", sec2: "पारिवारिक एवं संपर्क विवरण",
+                name: "पूरा नाम", dob: "जन्म तिथि", height: "ऊंचाई", edu: "शैक्षणिक योग्यता", job: "व्यवसाय/नोकरी",
+                father: "पिता का नाम", native: "मूल निवास स्थान", contact: "संपर्क नंबर"
             },
             mr: {
-                green: "=== क्लासिक ग्रीन फॉरमॅट (मराठी) ===\nपूर्ण नाव: \nजन्म तारीख: \nउंची: \nशिक्षण: \nनोकरी/व्यवसाय: \nकंपनीचे नाव: \nवडिलांचे नाव: \nसंपर्क क्रमांक: ",
-                red: "=== मॉडर्न रेड फॉरमॅट (मराठी) ===\nनाव: \nहुद्दा/पद: \nकंपनीचे नाव: \nवार्षिक उत्पन्न: \nकामाचे ठिकाण: \nसध्याचे राहण्याचे ठिकाण: ",
-                maroon: "=== पारंपारिक मारून फॉरमॅट (मराठी) ===\n|| श्री गणेशाय नमः ||\nपूर्ण नाव: \nगोत्र: \nनक्षत्र: \nराशी: \nमंगळ (आहे/नाही): \nमूळ गाव: ",
-                blue: "📱 ओशनू ब्लू मोबाईल लेआउट (मराठी) 📱\n• नाव: \n• वय/उंची: \n• नोकरी व शिक्षण: \n• राहण्याचे ठिकाण: \n• संपर्क क्रमांक: "
+                mainTitle: "बायोडाटा", subTitle: "|| श्री गणेशाय नमः ||",
+                sec1: "वैयक्तिक माहिती", sec2: "कौटुंबिक आणि संपर्क माहिती",
+                name: "पूर्ण नाव", dob: "जन्म तारीख", height: "उंची", edu: "शिक्षण", job: "नोकरी/व्यवसाय",
+                father: "वडिलांचे नाव", native: "मूळ गाव", contact: "संपर्क क्रमांक"
             },
             gu: {
-                green: "=== ક્લાસિક ગ્રીન ફોર્મેટ (ગુજરાતી) ===\nપૂરું નામ: \nજન્મ તારીખ: \nઊંચાઈ: \nશિક્ષણ: \nવ્યવસાય/નોકરી: \nપિતાનું નામ: \nસંપર્ક નંબર: ",
-                red: "=== મોડર્ન રેડ ફોર્મેટ (ગુજરાતી) ===\nનામ: \nોદ્દો: \nકંપનીનું નામ: \nવાર્ષિક આવક: \nનોકરીનું સ્થળ: \nપરિવારનું સરનામું: ",
-                maroon: "=== પારંપરિક મારૂન ફોર્મેટ (ગુજરાતી) ===\n|| શ્રી ગણેશાય નમઃ ||\nપૂરું નામ: \nગોત્ર: \nનક્ષત્ર: \nરાષિ: \nમાંગલિક (હા/ના): \nવતન/મૂળ ગામ: ",
-                blue: "📱 ઓશન બ્લુ મોબાઇલ લેઆઉટ (ગુજરાતી) 📱\n• નામ: \n• ઉંમર/ઊંચાઈ: \n• નોકરી-ધંધો: \n• હાલનું સરનામું: \n• ફોન નંબર: "
+                mainTitle: "બાયોડેટા", subTitle: "|| શ્રી ગણેશાય નમઃ ||",
+                sec1: "વ્યક્તિગત વિગતો", sec2: "કૌટુંબિક અને સંપર્ક વિગતો",
+                name: "પૂરું નામ", dob: "જન્મ તારીખ", height: "ઊંચાઈ", edu: "શિક્ષણ", job: "વ્યવસાય/નોકરી",
+                father: "પિતાનું નામ", native: "વતન", contact: "સંપર્ક નંબર"
             }
         };
 
@@ -443,37 +456,60 @@
             element.classList.add('active');
         }
 
-        // Navigation Engine to open template like a separate page view
-        function openTemplatePage(type) {
+        function openTemplateEditor(themeName, colorHex) {
+            // Adjust visual accent variable dynamically
+            document.documentElement.style.setProperty('--template-color', colorHex);
+            
+            // Switch layout visibility views like an app route change
             document.getElementById('hub-page').style.display = 'none';
+            document.getElementById('template-page').style.display = 'block';
+
+            // Extract correct localized dictionary values
+            const dictionary = labelsData[currentLang];
+
+            // Render Document preview framework labels accurately
+            document.getElementById('sheetHeaderTitle').innerText = dictionary.mainTitle;
+            document.getElementById('sheetHeaderSubtitle').innerText = dictionary.subTitle;
+            document.getElementById('secTitle1').innerText = dictionary.sec1;
+            document.getElementById('secTitle2').innerText = dictionary.sec2;
+
+            document.getElementById('lbl_name').innerText = dictionary.name + ":";
+            document.getElementById('lbl_dob').innerText = dictionary.dob + ":";
+            document.getElementById('lbl_height').innerText = dictionary.height + ":";
+            document.getElementById('lbl_education').innerText = dictionary.edu + ":";
+            document.getElementById('lbl_job').innerText = dictionary.job + ":";
+            document.getElementById('lbl_father').innerText = dictionary.father + ":";
+            document.getElementById('lbl_native').innerText = dictionary.native + ":";
+            document.getElementById('lbl_contact').innerText = dictionary.contact + ":";
+
+            // Clear preview fields
+            const fields = ['name','dob','height','education','job','father','native','contact'];
+            fields.forEach(f => document.getElementById('val_' + f).innerText = "");
+
+            // Build form fields in real-time inside left entry module box
+            let formHtml = `<h3 style="margin-top:0; color: ${colorHex};">Fill Details (${currentLang.toUpperCase()})</h3>`;
             
-            const templatePage = document.getElementById('template-page');
-            const title = document.getElementById('pageTitle');
-            const body = document.getElementById('pageTemplateBody');
+            fields.forEach(f => {
+                const labelText = dictionary[f === 'education' ? 'edu' : (f === 'job' ? 'job' : f)];
+                formHtml += `
+                    <div class="form-group">
+                        <label>${labelText}</label>
+                        <input type="text" id="input_${f}" oninput="updateSheetField('${f}', this.value)" placeholder="Enter ${labelText.toLowerCase()}">
+                    </div>`;
+            });
             
-            // Setup details onto full-screen template container
-            title.innerText = type.toUpperCase() + " SELECTION WORKSPACE (" + currentLang.toUpperCase() + ")";
-            body.innerText = templatesData[currentLang][type];
-            
-            templatePage.style.display = 'block';
-            window.scrollTo(0, 0);
+            document.getElementById('dynamicFormInputs').innerHTML = formHtml;
+            window.scrollTo(0,0);
+        }
+
+        function updateSheetField(fieldId, value) {
+            document.getElementById('val_' + fieldId).innerText = value;
         }
 
         function goBackToHub() {
             document.getElementById('template-page').style.display = 'none';
             document.getElementById('hub-page').style.display = 'block';
-            document.getElementById('pageCopySuccess').style.display = 'none';
-            window.scrollTo(0, 0);
-        }
-
-        function copyPageText() {
-            const text = document.getElementById('pageTemplateBody').innerText;
-            navigator.clipboard.writeText(text).then(() => {
-                const successMsg = document.getElementById('pageCopySuccess');
-                successMsg.innerText = "✅ Template Copied Successfully!";
-                successMsg.style.display = 'block';
-                setTimeout(() => { successMsg.style.display = 'none'; }, 3000);
-            });
+            window.scrollTo(0,0);
         }
     </script>
 </body>
