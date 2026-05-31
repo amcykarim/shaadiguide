@@ -3,14 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShaadiGuide.in - Matrimony Bio, Kundli & Shubh Muhurat Hub</title>
+    <title>ShaadiGuide.in - Premium Matrimonial Biodata Templates</title>
     
     <style>
+        :root {
+            --primary-color: #800020; /* Deep Premium Maroon */
+            --accent-color: #ff5a60;  /* Bright Wedding Pink */
+            --gold-color: #d4af37;    /* Elegant Festive Gold */
+            --bg-color: #fff9f9;      /* Warm white tint */
+        }
+
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f5f7fa;
+            background-color: var(--bg-color);
             color: #333;
         }
         
@@ -27,71 +34,121 @@
             margin-left: 10px;
         }
 
-        /* Header */
-        header {
-            background-color: #ff5a60;
+        /* 🌟 Premium Hero Section with Image Banner */
+        .hero {
+            background: linear-gradient(rgba(128, 0, 32, 0.75), rgba(255, 90, 96, 0.6)), 
+                        url('https://images.unsplash.com/photo-1607190074257-dd4b7af0309f?q=80&w=1200&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center 25%;
             color: white;
-            padding: 50px 20px;
+            padding: 80px 20px;
             text-align: center;
+            border-bottom: 5px solid var(--gold-color);
         }
-        h1 {
+        
+        .hero h1 {
             margin: 0;
-            font-size: 2.8rem;
+            font-size: 3.5rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            font-weight: 700;
         }
-        header p {
-            font-size: 1.2rem;
-            margin-top: 10px;
-            opacity: 0.9;
+        
+        .hero p {
+            font-size: 1.4rem;
+            margin-top: 15px;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+            color: #fff3f3;
         }
 
         .container {
-            max-width: 900px;
-            margin: 30px auto;
-            padding: 20px;
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 40px 20px;
         }
 
         .welcome-box {
             background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(128,0,32,0.08);
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
+            border-top: 4px solid var(--accent-color);
         }
 
-        /* Templates Section */
-        h2 {
-            color: #ff5a60;
-            border-bottom: 2px solid #ff5a60;
-            padding-bottom: 10px;
-            margin-top: 40px;
+        /* Grid Layout for Templates */
+        .template-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
         }
 
         .template-card {
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            margin-bottom: 30px;
-            padding: 25px;
-            text-align: left;
+            border-radius: 15px;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.05);
+            padding: 30px;
+            border-left: 5px solid var(--gold-color);
+            position: relative;
         }
 
         .template-card h3 {
             margin-top: 0;
-            color: #2c3e50;
-            font-size: 1.4rem;
+            color: var(--primary-color);
+            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        /* Text Box Display */
+        .template-card p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        /* Interactive Text Box Display */
+        .code-container {
+            position: relative;
+        }
+
         pre {
-            background-color: #f8f9fa;
-            border: 1px dashed #cbd5e1;
-            padding: 15px;
-            border-radius: 6px;
+            background-color: #fffafb;
+            border: 1px solid #f3d1d6;
+            padding: 20px;
+            border-radius: 8px;
             font-family: 'Courier New', Courier, monospace;
-            font-size: 0.95rem;
+            font-size: 1rem;
             overflow-x: auto;
             white-space: pre-wrap;
+            color: #444;
+            line-height: 1.5;
+        }
+
+        /* Modern Colorful Button */
+        .copy-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 10px rgba(255, 90, 96, 0.3);
+        }
+
+        .copy-btn:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(128, 0, 32, 0.4);
+        }
+        
+        .copy-btn:active {
+            transform: translateY(0);
         }
     </style>
 </head>
@@ -103,27 +160,30 @@
         <div id="google_translate_element"></div>
     </div>
 
-    <header>
+    <!-- 🌟 COLORFUL HERO BANNER WITH IMAGE -->
+    <div class="hero">
         <h1>ShaadiGuide.in</h1>
-        <p>Free Matrimony Biodata Templates & Pre-Wedding Resources</p>
-    </header>
+        <p>Premium Pre-Wedding Resources & Free Biodata Templates</p>
+    </div>
 
     <div class="container">
         
         <div class="welcome-box">
-            <p style="font-size: 1.2rem; line-height: 1.6; margin: 0;">
-                Welcome to India's premier free hub for marriage preparation. Copy, paste, and customize our premium matrimonial formats below for free. No registrations or hidden fees required!
+            <p style="font-size: 1.3rem; line-height: 1.6; margin: 0; color: var(--primary-color); font-weight: 500;">
+                Create beautiful matrimonial impressions flawlessly. Select an elegant design below, copy it with one click, and customize your details effortlessly.
             </p>
         </div>
 
-        <h2>📋 Free Matrimonial Biodata Templates</h2>
-        <p>Select a format below, copy the text inside the dashed boxes, and customize it with your own details on your phone or computer.</p>
+        <h2 style="color: var(--primary-color); font-size: 2rem; text-align: center; margin-bottom: 40px;">🌸 Select Your Biodata Layout</h2>
 
-        <!-- TEMPLATE 1 -->
-        <div class="template-card">
-            <h3>1. Modern Corporate & IT Professional Format</h3>
-            <p>Best for software engineers, MNC employees, bankers, and corporate professionals.</p>
-<pre>=================================================
+        <div class="template-grid">
+
+            <!-- TEMPLATE 1 -->
+            <div class="template-card">
+                <h3>💻 1. Modern Corporate & IT Professional Format</h3>
+                <p>Tailored beautifully for software engineers, tech professionals, MNC employees, and executives.</p>
+                <div class="code-container">
+                    <pre id="template1">=================================================
           MATRIMONIAL BIODATA (PROFESSIONAL)
 =================================================
 
@@ -158,13 +218,16 @@ PARTNER PREFERENCES
 * Preferred Education / Profession: 
 * Location Preference: 
 =================================================</pre>
-        </div>
+                    <button class="copy-btn" onclick="copyText('template1', this)">📋 Copy Template</button>
+                </div>
+            </div>
 
-        <!-- TEMPLATE 2 -->
-        <div class="template-card">
-            <h3>2. Traditional Family-Focused Format</h3>
-            <p>Best for families who prioritize detailed horoscope information and lineage details.</p>
-<pre>=================================================
+            <!-- TEMPLATE 2 -->
+            <div class="template-card">
+                <h3>🔱 2. Traditional Family-Focused Format</h3>
+                <p>Perfect for families who place high focus on ancestral heritage, gotras, and horoscope details.</p>
+                <div class="code-container">
+                    <pre id="template2">=================================================
           MATRIMONIAL BIODATA (TRADITIONAL)
 =================================================
 
@@ -200,13 +263,16 @@ EXPECTATIONS
 ------------
 * Looking for an educated, family-oriented partner who respects traditional values. Horoscope matching preferred.
 =================================================</pre>
-        </div>
+                    <button class="copy-btn" onclick="copyText('template2', this)">📋 Copy Template</button>
+                </div>
+            </div>
 
-        <!-- TEMPLATE 3 -->
-        <div class="template-card">
-            <h3>3. Short WhatsApp Format</h3>
-            <p>Optimized for quick sharing directly over mobile chat networks.</p>
-<pre>📱 *MATRIMONIAL BIODATA* 📱
+            <!-- TEMPLATE 3 -->
+            <div class="template-card">
+                <h3>📱 3. Instant WhatsApp Mobile Layout</h3>
+                <p>Configured cleanly with emojis to catch perfect visibility over mobile messaging chats.</p>
+                <div class="code-container">
+                    <pre id="template3">📱 *MATRIMONIAL BIODATA* 📱
 
 👤 *PERSONAL INFO*
 • *Name:* 
@@ -227,9 +293,31 @@ EXPECTATIONS
 📞 *CONTACT*
 • *Phone/WhatsApp:* 
 =================================================</pre>
-        </div>
+                    <button class="copy-btn" onclick="copyText('template3', this)">📋 Copy Template</button>
+                </div>
+            </div>
 
+        </div>
     </div>
+
+    <!-- ⚙️ INTERACTIVE JAVASCRIPT COPY FUNCTION -->
+    <script>
+        function copyText(containerId, button) {
+            var textToCopy = document.getElementById(containerId).innerText;
+            navigator.clipboard.writeText(textToCopy).then(function() {
+                var originalText = button.innerHTML;
+                button.innerHTML = "✅ Copied Successfully!";
+                button.style.backgroundColor = "#2ecc71"; // Turn green temporarily
+                
+                setTimeout(function() {
+                    button.innerHTML = originalText;
+                    button.style.backgroundColor = ""; // Reset back to pink
+                }, 2000);
+            }).catch(function(err) {
+                alert("Oops, copy failed. Please select text manually!");
+            });
+        }
+    </script>
 
     <!-- ⚙️ GOOGLE TRANSLATE SCRIPT -->
     <script type="text/javascript">
