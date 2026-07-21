@@ -1,0 +1,3 @@
+const messageCards=[...document.querySelectorAll('[data-message-card]')];const filterControls=[...document.querySelectorAll('[data-speech-filter]')];const filterStatus=document.querySelector('[data-speech-status]');
+function filterMessages(){const selections=Object.fromEntries(filterControls.map(control=>[control.name,control.value]));let visible=0;messageCards.forEach(card=>{const show=Object.entries(selections).every(([key,value])=>value==='all'||(card.dataset[key]||'').split(' ').includes(value));card.hidden=!show;if(show)visible++});if(filterStatus)filterStatus.textContent=`${visible} resource${visible===1?'':'s'} shown.`}
+filterControls.forEach(control=>control.addEventListener('change',filterMessages));filterMessages();
