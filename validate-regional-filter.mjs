@@ -1,0 +1,14 @@
+import fs from 'node:fs';
+import vm from 'node:vm';
+const makeCard=(text,area)=>({textContent:text,dataset:{area},hidden:false});
+const cards=[makeCard('Punjabi Weddings','north'),makeCard('Tamil Weddings','south'),makeCard('Telugu Weddings','south'),makeCard('Kannada Weddings','south'),makeCard('Kerala Hindu Weddings','south'),makeCard('Bengali Weddings','east')];
+const input={value:'',handlers:{},addEventListener(type,fn){this.handlers[type]=fn}};
+const status={textContent:''};
+const buttons=['all','north','south','east','west','northeast'].map(area=>({dataset:{regionFilter:area},handlers:{},addEventListener(type,fn){this.handlers[type]=fn},setAttribute(name,value){this[name]=value}}));
+const document={querySelectorAll(selector){return selector==='[data-region-card]'?cards:buttons},querySelector(selector){return selector==='[data-region-search]'?input:status}};
+vm.runInNewContext(fs.readFileSync('assets/js/regional-filter.js','utf8'),{document});
+input.value='Tamil';input.handlers.input();
+if(cards.filter(x=>!x.hidden).map(x=>x.textContent).join()!=='Tamil Weddings')throw new Error('text filter failed');
+input.value='';buttons.find(x=>x.dataset.regionFilter==='south').handlers.click();
+if(cards.filter(x=>!x.hidden).length!==4||status.textContent!=='4 regional guides shown.')throw new Error('area filter failed');
+console.log('PASS: regional text search and geographic filters update cards and live status correctly.');
